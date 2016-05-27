@@ -77,7 +77,11 @@ function initialize(vLat, vLong, vZoom)
   var marker, i;
   if(vDateIssued.includes("Today"))
     vDateIssued = vDateIssued.replace("Today", "");
-
+else
+		
+  vDateIssued = "No data please tryagain";
+  
+  
   document.getElementById("issueddate").innerHTML = "<p>Date Issued: "+vDateIssued+"</p>";
   for(i=0; i<arrLocations.length; i++)
   {
