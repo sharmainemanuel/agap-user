@@ -1,6 +1,6 @@
 
 body {
-    background-image: url('../img/pagasa22.png');
+
     background-repeat:no-repeat;
     background-position:center center;
     background-attachment: fixed;
@@ -125,3 +125,9 @@ color: #F65314;}
 .toggle {
 display: block;
 margin: 2em auto;}
+
+
+.loading{
+
+width:10%;opacity:0.5;margin-left:auto;margin-right:auto;display:block; position: relative;
+}
