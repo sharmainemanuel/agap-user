@@ -74,6 +74,7 @@
     -->
 	<!-- Pushwoosh plugin -->
     <gap:plugin name="pushwoosh-pgb-plugin" source="npm" />
+	<gap:plugin name="nl.x-services.plugins.socialsharing" />
 
     <!-- Define app icon for each platform. -->
 	
@@ -130,8 +131,9 @@
 <access origin="http://api.meteopilipinas.gov.ph/v1/raingauge" />
 <access origin="http://api.meteopilipinas.gov.ph/v1/fast/asian" />
 <access origin="http://api.meteopilipinas.gov.ph/v1/fast/outlook" />
+
 <allow-navigation href="http://*/*" />
-    <plugin name="cordova-plugin-whitelist" version="1" />
+	<plugin name="cordova-plugin-whitelist" source="npm" spec="1.1.0" />
     <allow-intent href="http://*/*" />
     <allow-intent href="https://*/*" />
     <allow-intent href="tel:*" />
