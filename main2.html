@@ -114,7 +114,16 @@ script-src * 'self' 'unsafe-inline' 'unsafe-eval';">
 					</ul>
 				</div>
 				
-	
+				<ul data-role="listview" data-inset="false"></ul>
+				<div data-role="collapsible" data-inset="false" data-collapsed-icon="carat-d" data-expanded-icon="carat-d" data-iconpos="right">
+					<h3>Real Time Weather</h3>
+					<ul data-role="listview" data-icon="false">
+						<li><a href="userlocation_cyclone.html" data-ajax='false'>User Location for Tropical Cyclone</a></li>						
+						<li><a href="userlocation_weather.html" data-ajax='false'>User Location for Weather</a></li>						
+						<li><a href="camera3.html" data-ajax='false'>Capture Image</a></li>						
+					
+					</ul>
+				</div>
 			</div>
 			</div>
 				<div data-role="header" data-position="fixed" class="wow fadeIn">
@@ -464,7 +473,7 @@ function getData(){
 	var  issued_date = myData.result[4].date;
 	var  forecast = myData.result[4].forecast;
 		$("#rss-feeds").html("Issued Date: "+issued_time+", "+issued_date+"</br>"+forecast);
-			setTimeout(function(){$('#imgLoader2').fadeOut();},500);}
+			setTimeout(function(){$('#imgLoader2').fadeOut();},500);
 	}
 	
 	});

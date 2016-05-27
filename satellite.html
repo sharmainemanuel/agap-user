@@ -90,10 +90,10 @@
 				<div data-role="collapsible" data-inset="false" data-collapsed-icon="carat-d" data-expanded-icon="carat-d" data-iconpos="right">
 							<h3>Tropical Cyclone Warnings</h3>
 							<ul data-role="listview" data-icon="false">
-								<li><a href="weatherbulletin.html" data-ajax='false'>Weather Bulletin</a></li>
+								<li><a href="weatherbulletin.html" data-ajax='false'>Local Weather Bulletin</a></li>
 								<li><a href="track.html" data-ajax='false'>Tropical Cyclone Track</a></li>
 								<li><a href="hourlyupdate.html"  data-ajax='false'> Hourly Update</a></li>
-								<li><a href="warnings_shipping.html"  data-ajax='false'>Warning for Shipping</a></li>
+								<li><a href="warnings_shipping.html"  data-ajax='false'>Int'l Weather Bulletin</a></li>
 								</ul>
 				</div>
 				<ul data-role="listview" data-inset="false"></ul>
@@ -109,45 +109,59 @@
 				<div data-role="collapsible" data-inset="false" data-collapsed-icon="carat-d" data-expanded-icon="carat-d" data-iconpos="right">
 					<h3>Social</h3>
 					<ul data-role="listview" data-icon="false">
+						<li><a href="facebook.html" data-ajax='false'>Facebook</a></li>				
 						<li><a href="twitter.html#twitter" data-ajax='false'>Twitter</a></li>				
 						<li><a href="podcast4.html#podcast" data-ajax='false'>Podcast</a></li>						
 					</ul>
 				</div>
 				
-					<ul data-role="listview" data-inset="false"></ul>
-				<div data-role="collapsible" data-inset="false" data-collapsed-icon="carat-d" data-expanded-icon="carat-d" data-iconpos="right">
-					<h3>Real Time Weather</h3>
-					<ul data-role="listview" data-icon="false">
-						<li><a href="userlocation_cyclone.html" data-ajax='false'>User Location for Tropical Cyclone</a></li>						
-						<li><a href="userlocation_weather.html" data-ajax='false'>User Location for Weather</a></li>						
-						<li><a href="camera3.html" data-ajax='false'>Capture Image</a></li>						
-					
-					</ul>
-				</div>
+	
 			</div>
 				<div data-role="header" data-position="fixed" class="wow fadeIn">
 					<a href="#leftpanel" class="ui-btn ui-btn-left wow fadeIn" data-wow-delay='0.8s'><i class="zmdi zmdi-menu"></i></a>
 					<h1 class="wow fadeIn" data-wow-delay='0.4s'>Satellite</h1>
-			</div>
+				 	<a   href="#sharePopupDialog" class="ui-btn ui-btn-right wow fadeIn" data-wow-delay='0.8s' data-rel="popup" data-position-to="window" data-transition="pop">
+								<i class='zmdi zmdi-share'></i>
+				</a>
+				
+				</div>		
+	<div data-role="popup" id="sharePopupDialog">
+                <div data-role="header">
+                	<h1 class='nd-title'><i class='zmdi zmdi-share'></i>&nbsp;SHARE</h1>
+            	</div>
+                <div data-role="content">
+                    <a href="http://www.facebook.com/sharer/sharer.php?u=http://www.pagasa.dost.gov.ph/index.php/general-weather/daily-weather-forecast&title=Weather"  data-role="button" data-inline="true" class="ui-btn " target="_blank"><i class='zmdi zmdi-facebook-box zmdi-hc-lg'></i> SHARE</a>
+					<a href="http://twitter.com/share?url=http://www.pagasa.dost.gov.ph/index.php/general-weather/daily-weather-forecast&title=Weather&text=Daily+Weather+%23PAGASA" title="Share on Twitter"  data-role="button" data-inline="true" class="ui-btn  " target="_blank"><i class='zmdi zmdi-twitter-box zmdi-hc-lg'></i> TWEET</a>
+					<a href="https://plus.google.com/share?url=http://www.pagasa.dost.gov.ph/index.php/general-weather/daily-weather-forecast&title=Weather&text=Daily+Weather+%23PAGASA" title="Share on Twitter"  data-role="button" data-inline="true" class="ui-btn  " target="_blank"><i class='zmdi zmdi-google-plus-box zmdi-hc-lg'></i> SHARE</a>
+                    <a href="dialog/index.html" data-rel="back" data-role="button" data-inline="true" class="ui-btn ui-btn-primary"><i class='zmdi zmdi-cancel'></i> Cancel</a>
+
+                </div>
+         </div>
+		 
+		 
 
 			<div role="main" class="ui-content" data-inset="false">
-				<div class="nd2-card">
+				<div class="nd2-card card-media-small">
 					<div class="card-media">
-						<select name="sat" id="satlist" onchange="satChange(document.getElementById('satlist').value)">
-							<!-- <option selected hidden>[Select a Satellite Type]</option> -->
-							<option value=1 selected>Himawari-ir</option>
-							<option value=2>Himawari-Vis</option>
-							<option value=3>F2YE-IR</option>
-							<!-- <option value=3>F2YE-Vis</option> -->
-						</select>
-
-						<img class="satelliteimage" src="">
-
-
-						<!-- <h4><strong>Weather Situation:</strong></h4> <p id="rss-feeds" style="text-align:justify"></p> -->
-
+						<p><strong>HIMAWARI IR</strong></p>
+						<img class="satelliteimageir" src="">
 					</div>
 				</div> 
+				<div class="nd2-card card-media-small">
+					<div class="card-media">
+						<p><strong>HIMAWARI VIS</strong></p>
+						<img class="satelliteimagevis" src="">
+					</div>
+				</div>
+				<div class="nd2-card card-media-small">
+					<div class="card-media">
+						<p><strong>F2YE</strong></p>
+						<img class="satelliteimagef2ye" src="">
+					</div>
+				</div>
+
+					
+				
 			</div> 
 		</div> 
 	
@@ -163,24 +177,11 @@
 		<script src="js/moment.min.js"></script>
 
 		<script>
-			$(document).ready(function() {
-				//$('.satelliteimage').attr('src', 'http://121.58.193.148/repo/himawari/24hour/irsml/latestHIM_irsml.gif'); 
-				$('.satelliteimage').attr('src', 'http://121.58.193.148/repo/himawari/24hour/irbig/latestHIM_irbig.gif');
-				// $("#rss-feeds").rss("https://kidlat.pagasa.dost.gov.ph/prsdcodes/rss/forecast/forecast.xml", {
-				// 	entryTemplate: '{bodyPlain}',
-				// 	effect: 'slideFastSynced',
-				// 	    }).show();
-			});
-
-			function satChange(myVal){
-				console.log(myVal)
-				if (myVal == 1) {
-					$('.satelliteimage').attr('src', 'http://121.58.193.148/repo/himawari/24hour/irbig/latestHIM_irbig.gif'); }
-				if (myVal == 2) {
-					$('.satelliteimage').attr('src', 'http://121.58.193.148/repo/himawari/24hour/visbig/latestHIM_visbig.gif'); }
-				if (myVal == 3) {
-					$('.satelliteimage').attr('src', 'http://121.58.193.148/repo/fy2e-ir/24hour/latest_CROPfy.gif'); }
-			}
+		$(document).ready(function() {
+			$('.satelliteimageir').attr('src', 'http://121.58.193.148/repo/himawari/24hour/irbig/latestHIM_irbig.gif');
+			$('.satelliteimagevis').attr('src', 'http://121.58.193.148/repo/himawari/24hour/visbig/latestHIM_visbig.gif');
+			$('.satelliteimagef2ye').attr('src', 'http://121.58.193.148/repo/fy2e-ir/24hour/latest_CROPfy.gif');
+		});
 		</script>
 
 

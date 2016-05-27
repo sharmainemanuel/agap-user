@@ -79,10 +79,10 @@
 				<div data-role="collapsible" data-inset="false" data-collapsed-icon="carat-d" data-expanded-icon="carat-d" data-iconpos="right">
 							<h3>Tropical Cyclone Warnings</h3>
 							<ul data-role="listview" data-icon="false">
-								<li><a href="weatherbulletin.html" data-ajax='false'>Weather Bulletin</a></li>
+									<li><a href="weatherbulletin.html" data-ajax='false'>Local Weather Bulletin</a></li>
 								<li><a href="track.html" data-ajax='false'>Tropical Cyclone Track</a></li>
 								<li><a href="hourlyupdate.html"  data-ajax='false'> Hourly Update</a></li>
-								<li><a href="warnings_shipping.html"  data-ajax='false'>Warning for Shipping</a></li>
+								<li><a href="warnings_shipping.html"  data-ajax='false'>Int'l Weather Bulletin</a></li>
 								</ul>
 				</div>
 				<ul data-role="listview" data-inset="false"></ul>
@@ -98,27 +98,38 @@
 				<div data-role="collapsible" data-inset="false" data-collapsed-icon="carat-d" data-expanded-icon="carat-d" data-iconpos="right">
 					<h3>Social</h3>
 					<ul data-role="listview" data-icon="false">
+						<li><a href="facebook.html" data-ajax='false'>Facebook</a></li>	
 						<li><a href="twitter.html#twitter" data-ajax='false'>Twitter</a></li>				
 						<li><a href="podcast4.html#podcast" data-ajax='false'>Podcast</a></li>						
 					</ul>
 				</div>
 				
-					<ul data-role="listview" data-inset="false"></ul>
-				<div data-role="collapsible" data-inset="false" data-collapsed-icon="carat-d" data-expanded-icon="carat-d" data-iconpos="right">
-					<h3>Real Time Weather</h3>
-					<ul data-role="listview" data-icon="false">
-						<li><a href="userlocation_cyclone.html" data-ajax='false'>User Location for Tropical Cyclone</a></li>						
-						<li><a href="userlocation_weather.html" data-ajax='false'>User Location for Weather</a></li>						
-						<li><a href="camera3.html" data-ajax='false'>Capture Image</a></li>						
-					
-					</ul>
-				</div>
+	
 			</div>
 				<div data-role="header" data-position="fixed" class="wow fadeIn">
 					<a href="#leftpanel" class="ui-btn ui-btn-left wow fadeIn" data-wow-delay='0.8s'><i class="zmdi zmdi-menu"></i></a>
-					<h1 class="wow fadeIn" data-wow-delay='0.4s'>Shipping Warning</h1>
-			</div>
+					<h1 class="wow fadeIn" data-wow-delay='0.4s'>Int'l Weather Bulletin</h1>
+				 	<a   href="#sharePopupDialog" class="ui-btn ui-btn-right wow fadeIn" data-wow-delay='0.8s' data-rel="popup" data-position-to="window" data-transition="pop">
+								<i class='zmdi zmdi-share'></i>
+				</a>
+				
+				</div>		
+	<div data-role="popup" id="sharePopupDialog">
+                <div data-role="header">
+                	<h1 class='nd-title'><i class='zmdi zmdi-share'></i>&nbsp;SHARE</h1>
+            	</div>
+                <div data-role="content">
+                    <a href="http://www.facebook.com/sharer/sharer.php?u=http://www.pagasa.dost.gov.ph/index.php/general-weather/daily-weather-forecast&title=Weather"  data-role="button" data-inline="true" class="ui-btn " target="_blank"><i class='zmdi zmdi-facebook-box zmdi-hc-lg'></i> SHARE</a>
+					<a href="http://twitter.com/share?url=http://www.pagasa.dost.gov.ph/index.php/general-weather/daily-weather-forecast&title=Weather&text=Daily+Weather+%23PAGASA" title="Share on Twitter"  data-role="button" data-inline="true" class="ui-btn  " target="_blank"><i class='zmdi zmdi-twitter-box zmdi-hc-lg'></i> TWEET</a>
+					<a href="https://plus.google.com/share?url=http://www.pagasa.dost.gov.ph/index.php/general-weather/daily-weather-forecast&title=Weather&text=Daily+Weather+%23PAGASA" title="Share on Twitter"  data-role="button" data-inline="true" class="ui-btn  " target="_blank"><i class='zmdi zmdi-google-plus-box zmdi-hc-lg'></i> SHARE</a>
+                    <a href="dialog/index.html" data-rel="back" data-role="button" data-inline="true" class="ui-btn ui-btn-primary"><i class='zmdi zmdi-cancel'></i> Cancel</a>
+
+                </div>
+         </div>
+		 
+		 
 			<div role="main" class="ui-content" data-inset="false">
+				<img id="imgLoader" src="img/ballRing.gif" class="loading">
 			<div class="inner" style="style='text-align:justify;">
 					</div>
 			</div> 
@@ -136,51 +147,8 @@
 		<script src="nd2settings.js"></script>
 		<script src="js/jquery.rss.js"></script>
 		<script src="js/moment.min.js"></script>
-			<script>
-
-				$(document).ready(function(){
-		$.ajax
-({
-
-  type: "GET",
-  url: "http://iligtas.ph/agaptest/iws.php",
-  async: false,
-
-  success: function (result2){
-
-	localStorage.setItem("warning_category", result2.result[0].warning_category);
-	localStorage.setItem("warning_number", result2.result[0].warning_number);
-	localStorage.setItem("ty_type", result2.result[0].tc_type);
-
-
-
-  	var date = result2.result[0].date;
- 	var warning_category = localStorage.getItem("warning_category");
- 	var warning_number = localStorage.getItem("warning_number");
- 	var ty_type = localStorage.getItem("ty_type");
-	var int_tc_name = result2.result[0].int_tc_name;
- 	var tc_number = result2.result[0].tc_number;
-	var includes_radar = result2.result[0].includes_radar;
-	var location_latlng = result2.result[0].location_latlng;
-	var fcst = result2.result[0].fcst;
-	var fcst_value = result2.result[0].fcst_value;
-	var sea_condition = result2.result[0].sea_condition;
-	var tc_radius = result2.result[0].tc_radius;
-	var extent = result2.result[0].extent;
-
-
-		
-
-	$( ".inner" ).append("<ul data-role=listview data-inset=false data-icon=false data-divider-theme=b class=ui-listview> <li class='ui-li-static ui-body-inherit ui-first-child'> <span>Warning Category:</span> "+warning_category+" </li> <li class='ui-li-static ui-body-inherit'> Warning Number: "+warning_number+" </li></li> <li class='ui-li-static ui-body-inherit'> Tropical Type: "+ty_type+" </li></li> <li class='ui-li-static ui-body-inherit'> Tropical International Name: "+int_tc_name+" </li></li> <li class='ui-li-static ui-body-inherit'> Tropical Number: "+tc_number+" </li></li> <li class='ui-li-static ui-body-inherit'> Includes Radar: "+includes_radar+" </li></li> <li class='ui-li-static ui-body-inherit'> Location(lot,lang): "+location_latlng+" </li></li> <li class='ui-li-static ui-body-inherit'> Forecast: "+fcst+" </li></li> <li class='ui-li-static ui-body-inherit'> Forecast Value: "+fcst_value+" </li></li> <li class='ui-li-static ui-body-inherit'> Sea Condition: "+sea_condition+" </li></li> <li class='ui-li-static ui-body-inherit'> Tropical Radius: "+tc_radius+" </li></li> <li class='ui-li-static ui-body-inherit'> Extent: "+extent+" </li></ul>");
-
-	},  error: function (request, textStatus, errorThrown) {
-        console.log(request.responseText);
-        console.log(textStatus);
-        console.log(errorThrown);
-    }
-});
-});
-		</script>
+		<script src="js/internet.js"></script>
+		<script src="js/warnings_shipping.js"></script>
 	</body>
 </html>
 

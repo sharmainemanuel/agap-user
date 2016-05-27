@@ -10,6 +10,7 @@ var arrIcon3=[], arrMin3=[], arrMax3=[];
 var arrIcon4=[], arrMin4=[], arrMax4=[];
 var arrIcon5=[], arrMin5=[], arrMax5=[];
 var vDateIssued;
+var arrDay = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
 
 $(document).ready(function()
 {
@@ -26,9 +27,11 @@ $(document).ready(function()
       
       $.ajax({
         type: "GET",
-        url: "http://iligtas.ph/agaptest/tourist.php",
+        url: "http://m.weather.gov.ph/agaptest/tourist.php",
         async: false,
         success: function(myData){
+            setTimeout(function(){
+            $('#imgLoader').fadeOut();
           console.log(myData.result[1].city_name);
           vDateIssued = myData.result[0].date;
           for(var i = 0; i < 13; i++){
@@ -58,9 +61,12 @@ $(document).ready(function()
           arrIcon5.push("img/weather-icons/day" + myData.result[i].logo_5 + ".png");
           arrMin5.push(myData.result[i].min_5);
           arrMax5.push(myData.result[i].max_5);
-        }}
+        }
+        google.maps.event.addDomListener(window, 'load',initialize(vLat, vLong, 6));
+ }, 500);  
+      }
       });
-      google.maps.event.addDomListener(window, 'load',initialize(vLat, vLong, 6));
+      
     }
 });
 
@@ -101,7 +107,10 @@ function initialize(vLat, vLong, vZoom)
 
   var infowindow = new google.maps.InfoWindow();
   var marker, i;
+  if(vDateIssued.includes("Today"))
+    vDateIssued = vDateIssued.replace("Today", "");
 
+  document.getElementById("issueddate").innerHTML = "<p>Date Issued: "+vDateIssued+"</p>";
   for(i=0; i<arrLocations.length; i++)
   {
     marker = new google.maps.Marker({
@@ -113,15 +122,27 @@ function initialize(vLat, vLong, vZoom)
     google.maps.event.addListener(marker, 'click', (function(marker, i){
     return function(){
       var vLayout = "<br /><table border='1'><tr><td colspan='5'><strong>"+arrCityName[i]+"</strong><br /></td></tr>";
-      vLayout += "<tr><td><img src="+arrIcon1[i]+"><br /><span>"+arrMin1[i]+" - "+arrMax1[i]+"&degC</span></td>";
-      vLayout += "<td><img src="+arrIcon2[i]+"><br /><span>"+arrMin2[i]+" - "+arrMax2[i]+"&degC</span></td>";
-      vLayout += "<td><img src="+arrIcon3[i]+"><br /><span>"+arrMin3[i]+" - "+arrMax3[i]+"&degC</span></td>";
-      vLayout += "<td><img src="+arrIcon4[i]+"><br /><span>"+arrMin4[i]+" - "+arrMax4[i]+"&degC</span></td>";
-      vLayout += "<td><img src="+arrIcon5[i]+"><br /><span>"+arrMin5[i]+" - "+arrMax5[i]+"&degC</span></td></tr></table>";
+      vLayout += "<tr><td><span><strong>"+displayDay(0)+"</strong></span><img src="+arrIcon1[i]+"><br /><span>"+arrMin1[i]+" - "+arrMax1[i]+"&degC</span></td>";
+      vLayout += "<td><span><strong>"+displayDay(1)+"</strong></span><img src="+arrIcon2[i]+"><br /><span>"+arrMin2[i]+" - "+arrMax2[i]+"&degC</span></td>";
+      vLayout += "<td><span><strong>"+displayDay(2)+"</strong></span><img src="+arrIcon3[i]+"><br /><span>"+arrMin3[i]+" - "+arrMax3[i]+"&degC</span></td>";
+      vLayout += "<td><span><strong>"+displayDay(3)+"</strong></span><img src="+arrIcon4[i]+"><br /><span>"+arrMin4[i]+" - "+arrMax4[i]+"&degC</span></td>";
+      vLayout += "<td><span><strong>"+displayDay(4)+"</strong></span><img src="+arrIcon5[i]+"><br /><span>"+arrMin5[i]+" - "+arrMax5[i]+"&degC</span></td></tr></table>";
       vLayout += "<p style='text-align:right !important; text-color:gray; font-size:small; font-style: italic'>Date Issued: "+vDateIssued+"</p>";
       infowindow.setContent(vLayout);
       infowindow.open(map, marker);
     }
   })(marker, i));
   }
+}
+
+function displayDay(z){
+  var parts, timepart;
+
+  parts = vDateIssued.split(' ');
+  //timepart = parts[0].split('\n');
+  myDatestring = parts[parts.length -2]+" "+ parts[parts.length -3] +", "+parts[parts.length -1];
+  console.log(myDatestring);
+  mydate = new Date(myDatestring);
+  mydate.setDate(mydate.getDate()+z);
+  return arrDay[mydate.getDay()];
 }

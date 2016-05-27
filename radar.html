@@ -12,15 +12,15 @@
 		<link rel="stylesheet" href="css/pagasa.css" />
 		<style>/* Prevent FOUC */body { opacity: 0; }</style>
 		<style type="text/css">
+			body {background-image: url('img/loading.png'); background-size: 20% 20%; background-repeat: no-repeat;}
 			#showDaily,#showDailyHome {margin-left:12%;}
 			.forecast {margin-left:12%;padding-top:5%;}
 			.wIcon{margin-left: -8px;}
 		</style>
 	</head>
 	<body >
-		<div data-role="page" id="weathermap">
+		<div data-role="page" id="radar">
 
-			<!-- panel left -->
 		<div data-role="panel" id="leftpanel" data-display="overlay" data-position-fixed="true" >
 				<div class='nd2-sidepanel-profile wow fadeInDown'>
 					<img class='profile-background' src="bg.jpg" />
@@ -33,8 +33,8 @@
 						<div class='col-xs-8'>
 							<div class='box profile-text'>
 								<strong>PAGASA</strong>
-									<span class='subline'>Tracking the sky</span>
-									<span class='subline'>Helping the country</span>
+									<span class='subline'>"Tracking the sky</span>
+									<span class='subline'>Helping the country"</span>
 							</div>
 						</div>
 					</div>
@@ -70,18 +70,17 @@
 						<li><a href="warnings_gale.html" data-ajax='false'>Gale Warning</a></li>
 						<li><a href="warnings_special.html" data-ajax='false'>Special Weather Forecast</a></li>
 						<li><a href="warnings_advisories.html" data-ajax='false'>Weather Advisories</a></li>
-						<li>
-						<div data-role="collapsible" data-inset="false" data-collapsed-icon="carat-d" data-expanded-icon="carat-d" data-iconpos="right">
-							<h4>Tropical Cyclone Information</h4>
+					</ul>
+				</div>
+				<ul data-role="listview" data-inset="false"></ul>
+				<div data-role="collapsible" data-inset="false" data-collapsed-icon="carat-d" data-expanded-icon="carat-d" data-iconpos="right">
+							<h3>Tropical Cyclone Warnings</h3>
 							<ul data-role="listview" data-icon="false">
-								<li><a href="#" data-ajax='false'>Weather Bulletin</a></li>
+								<li><a href="weatherbulletin.html" data-ajax='false'>Local Weather Bulletin</a></li>
 								<li><a href="track.html" data-ajax='false'>Tropical Cyclone Track</a></li>
 								<li><a href="hourlyupdate.html"  data-ajax='false'> Hourly Update</a></li>
-								<li><a href="warnings_shipping.html"  data-ajax='false'>Warning for Shipping</a></li>
+								<li><a href="warnings_shipping.html"  data-ajax='false'>Int'l Weather Bulletin</a></li>
 								</ul>
-						</div>
-							</li>
-					</ul>
 				</div>
 				<ul data-role="listview" data-inset="false"></ul>
 				<div data-role="collapsible" data-inset="false" data-collapsed-icon="carat-d" data-expanded-icon="carat-d" data-iconpos="right">
@@ -96,20 +95,14 @@
 				<div data-role="collapsible" data-inset="false" data-collapsed-icon="carat-d" data-expanded-icon="carat-d" data-iconpos="right">
 					<h3>Social</h3>
 					<ul data-role="listview" data-icon="false">
-						<li><a href="twitter.html#twitter" data-ajax='false'>Twitter</a></li>						
-						<li><a href="podcast.html#podcast" data-ajax='false'>Podcast</a></li>						
+						<li><a href="facebook.html" data-ajax='false'>Facebook</a></li>	
+						<li><a href="twitter.html#twitter" data-ajax='false'>Twitter</a></li>				
+						<li><a href="podcast4.html#podcast" data-ajax='false'>Podcast</a></li>						
 					</ul>
 				</div>
-				<hr class="inset">
-				<ul data-role="listview" data-inset="false">
-					<li data-role="list-divider">Information</li>
-				</ul>
-				<div data-role="collapsible" data-inset="false" data-collapsed-icon="carat-d" data-expanded-icon="carat-d" data-iconpos="right">
-					<h3>Nice to Know</h3>
 				
-				</div>
+					
 			</div>
-			<!-- /panel left -->
 			<div data-role="header" data-position="fixed" class="wow fadeIn">
 					<a href="#leftpanel" class="ui-btn ui-btn-left wow fadeIn" data-wow-delay='0.8s'><i class="zmdi zmdi-menu"></i></a>
 					<h1 class="wow fadeIn" data-wow-delay='0.4s'>Radar</h1>
@@ -126,7 +119,7 @@
 				<fieldset data-role="controlgroup">
 					<input type="checkbox" name="c1" id="c1" onclick="aparri();">
 					<label for="c1">Aparri</label>
-					<input type="checkbox" name="c2" id="c2" onclick="subic();">
+					<input type="checkbox" name="c2" id="c2" checked onclick="subic();">
 					<label for="c2">Subic</label>
 					<input type="checkbox" name="c3" id="c3" onclick="tagaytay();">
 					<label for="c3">Tagaytay</label>

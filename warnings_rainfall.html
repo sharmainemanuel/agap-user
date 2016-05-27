@@ -26,6 +26,8 @@
 
     background: transparent;
 }
+li span {font-weight: :bold; 
+}
 			</style>
 	</head>
 	<body >
@@ -86,10 +88,10 @@
 				<div data-role="collapsible" data-inset="false" data-collapsed-icon="carat-d" data-expanded-icon="carat-d" data-iconpos="right">
 							<h3>Tropical Cyclone Warnings</h3>
 							<ul data-role="listview" data-icon="false">
-								<li><a href="weatherbulletin.html" data-ajax='false'>Weather Bulletin</a></li>
+								<li><a href="weatherbulletin.html" data-ajax='false'>Local Weather Bulletin</a></li>
 								<li><a href="track.html" data-ajax='false'>Tropical Cyclone Track</a></li>
 								<li><a href="hourlyupdate.html"  data-ajax='false'> Hourly Update</a></li>
-								<li><a href="warnings_shipping.html"  data-ajax='false'>Warning for Shipping</a></li>
+								<li><a href="warnings_shipping.html"  data-ajax='false'>Int'l Weather Bulletin</a></li>
 								</ul>
 				</div>
 				<ul data-role="listview" data-inset="false"></ul>
@@ -105,62 +107,78 @@
 				<div data-role="collapsible" data-inset="false" data-collapsed-icon="carat-d" data-expanded-icon="carat-d" data-iconpos="right">
 					<h3>Social</h3>
 					<ul data-role="listview" data-icon="false">
+						<li><a href="facebook.html" data-ajax='false'>Facebook</a></li>	
 						<li><a href="twitter.html#twitter" data-ajax='false'>Twitter</a></li>				
 						<li><a href="podcast4.html#podcast" data-ajax='false'>Podcast</a></li>						
 					</ul>
 				</div>
 				
-					<ul data-role="listview" data-inset="false"></ul>
-				<div data-role="collapsible" data-inset="false" data-collapsed-icon="carat-d" data-expanded-icon="carat-d" data-iconpos="right">
-					<h3>Real Time Weather</h3>
-					<ul data-role="listview" data-icon="false">
-						<li><a href="userlocation_cyclone.html" data-ajax='false'>User Location for Tropical Cyclone</a></li>						
-						<li><a href="userlocation_weather.html" data-ajax='false'>User Location for Weather</a></li>						
-						<li><a href="camera3.html" data-ajax='false'>Capture Image</a></li>						
-					
-					</ul>
-				</div>
+	
 			</div>
 				<div data-role="header" data-position="fixed" class="wow fadeIn">
 					<a href="#leftpanel" class="ui-btn ui-btn-left wow fadeIn" data-wow-delay='0.8s'><i class="zmdi zmdi-menu"></i></a>
-					<h1 class="wow fadeIn" data-wow-delay='0.4s'>Rainfall Warning</h1>
-			</div>
+					<h1 class="wow fadeIn" data-wow-delay='0.4s'> Rainfall Warning</h1>
+				 	<a   href="#sharePopupDialog" class="ui-btn ui-btn-right wow fadeIn" data-wow-delay='0.8s' data-rel="popup" data-position-to="window" data-transition="pop">
+								<i class='zmdi zmdi-share'></i>
+				</a>
+				
+				</div>		
+	<div data-role="popup" id="sharePopupDialog">
+                <div data-role="header">
+                	<h1 class='nd-title'><i class='zmdi zmdi-share'></i>&nbsp;SHARE</h1>
+            	</div>
+                <div data-role="content">
+                    <a href="http://www.facebook.com/sharer/sharer.php?u=http://pagasa.dost.gov.ph/#rainfall-and-thunderstorm-warning"  data-role="button" data-inline="true" class="ui-btn " target="_blank"><i class='zmdi zmdi-facebook-box zmdi-hc-lg'></i> SHARE</a>
+					<a href="http://twitter.com/share?url=http://pagasa.dost.gov.ph/#rainfall-and-thunderstorm-warning" title="Share on Twitter"  data-role="button" data-inline="true" class="ui-btn  " target="_blank"><i class='zmdi zmdi-twitter-box zmdi-hc-lg'></i> TWEET</a>
+					<a href="https://plus.google.com/share?url=http://pagasa.dost.gov.ph/#rainfall-and-thunderstorm-warning" title="Share on Twitter"  data-role="button" data-inline="true" class="ui-btn  " target="_blank"><i class='zmdi zmdi-google-plus-box zmdi-hc-lg'></i> SHARE</a>
+                    <a href="dialog/index.html" data-rel="back" data-role="button" data-inline="true" class="ui-btn ui-btn-primary"><i class='zmdi zmdi-cancel'></i> Cancel</a>
+
+                </div>
+         </div>
+		 
+		 
 
 			<div role="main" class="ui-content" data-inset="false">
-				<div role="main" class="ui-content" data-inset="false">
+				<div class="nd2-card nd3-card">
+					<div class="card-media">
+					<!-- <img id="imgLoader" src="img/ballRing.gif" class="loading"> -->
+						<select id="voptions" onchange="getData(document.getElementById('voptions').value)">
+						<option value="" hidden >select region</option> 
+						<option value="" style="display:none;" >select region</option> 
+							<option value="3" >Northern Luzon</option> 			
+							<option value="0" >NCR</option> 	
+							<option value="2" >Southern Luzon</option> 
+							<option value="4" >Visayas</option> 
+							<option value="1" >Mindanao</option> 
+
+						</select>
+					
+						<br><br>
+						<div class="inner" id="inner" >
+				
+					<ul data-role="listview" data-inset="false" data-icon="false" data-divider-theme="b">
+					<li>
+						<img src="img/newyellow.png">
+						<h2>ADVISORY</h2>
+						<p>Community PREPAREDNESS FLOODING is THREATHENING in low-lying areas and near river channels </p>
+					</li>
+					<li>
+						<img src="img/neworange.png">
+						<h2>ALERT</h2>
+						<p>Community PREPAREDNESS FLOODING is THREATHENING in low-lying areas and near river channels </p>
+					
+					   
+					</li>
+					<li>
+						<img src="img/newred.png">
+						 <h2>EMERGENCY</h2>
+						 <p>Community RESPONSE SEVERE FLOODING is EXPECTED Take necessary precautionary measures</p>
+					</li>
+				</ul>
+					</div>
 						
-				<select id=div onchange="getData()">
-				<option value="" style="display:none;" >select region</option> 
-				<option value="NCR" >NCR</option> 
-				<option value="MIN" >Mindanao</option> 
-				<option value="SL" >South Luzon</option> 
-				<option value="NL" >North Luzon</option> 
-				<option value="VIS" >Visayas</option> 
-				</select>
-			
-			<br><br>
-			<div class="inner" id="inner" >
-		
-			<ul data-role="listview" data-inset="false" data-icon="false" data-divider-theme="b">
-            <li>
-                <img src="img/newyellow.png">
-                <h2>ADVISORY</h2>
-				<p>Community PREPAREDNESS FLOODING is THREATHENING in low-lying areas and near river channels </p>
-            </li>
-            <li>
-                <img src="img/neworange.png">
-                <h2>ALERT</h2>
-				<p>Community PREPAREDNESS FLOODING is THREATHENING in low-lying areas and near river channels </p>
-			
-               
-            </li>
-			<li>
-                <img src="img/newred.png">
-                 <h2>EMERGENCY</h2>
-               	 <p>Community RESPONSE SEVERE FLOODING is EXPECTED Take necessary precautionary measures</p>
-            </li>
-        </ul>
-			</div>
+						
+					</div> 
 				</div> 
 			</div> 
 		</div> 
@@ -178,56 +196,6 @@
 		<script src="js/jquery.rss.js"></script>
 		<script src="js/moment.min.js"></script>
 		<script src="js/internet.js"></script>
-		<script>
-
-	
-	
-	function getData(){
-	
-	
-		var divisionResult = document.getElementById('div').value;
-		$.ajax
-({
-  type: "GET",
-  url: "http://iligtas.ph/agaptest/rainfall_warning.php",
-  async: false,
-  success: function (result2){
-		for(j=0; j<=result2.result.length; j++){
-			for(i=0; i<=result2.result.length;i++){
-				var division = result2.result[i][j].Division;
-				var Warning_Number = result2.result[i][j].Warning_Number;
-				var Weather_System = result2.result[i][j].Weather_System;
-				
-				var Yellow_Area = result2.result[i][j].Yellow_Area;
-				var Orange_Area = result2.result[i][j].Orange_Area;
-				var Red_Area = result2.result[i][j].Red_Area;
-				
-				var Yellow_Impact = result2.result[i][j].Yellow_Impact;
-				var Orange_Impact = result2.result[i][j].Orange_Impact;
-				var Red_Impact = result2.result[i][j].Red_Impact;
-
-				var time = result2.result[i][j].Issued_Time;
-				var day = result2.result[i][j].Day;
-				var month = result2.result[i][j].Month;
-				var year = result2.result[i][j].Year;
-				var issued_at = time + " " +day+" " +month+ " " +year;
-				
-				
-				if(division == divisionResult){
-					document.getElementById('inner').innerHTML = 
-					"<ul data-role=listview data-inset=false data-icon=false data-divider-theme=b class=ui-listview> <li class='ui-li-static ui-body-inherit ui-first-child'> Warning Number: "+Warning_Number+" </li> <li class='ui-li-static ui-body-inherit'> Weather System: "+Weather_System+" </li> <li class='ui-li-static ui-body-inherit ui-li-has-thumb'> <img src=img/newyellow.png> <h2>"+Yellow_Area+"</h2>	<p>"+Yellow_Impact+"</p> </li> <li class='ui-li-static ui-body-inherit ui-li-has-thumb'> <img src=img/neworange.png>  <h2>"+Orange_Area+"</h2><p>"+Orange_Impact+"</p>  </li><li class='ui-li-static ui-body-inherit ui-li-has-thumb'> <img src=img/newred.png><h2>"+Red_Area+"</h2><p>"+Red_Impact+"</p>  </li></ul>" ;
-			
-				}
-			
-				
-			}
-		}
-	}
-});
-
-
-}
-		</script>
-		</script>
+		<script src="js/warnings_rainfall.js"></script>
 	</body>
 </html>

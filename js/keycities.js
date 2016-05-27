@@ -10,6 +10,8 @@ var arrIcon3=[], arrMin3=[], arrMax3=[];
 var arrIcon4=[], arrMin4=[], arrMax4=[];
 var arrIcon5=[], arrMin5=[], arrMax5=[];
 var vDateIssued;
+var arrDay = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+
 
 $(document).ready(function()
 {
@@ -26,7 +28,7 @@ $(document).ready(function()
       
       $.ajax({
         type: "GET",
-        url: "http://iligtas.ph/agaptest/outlook.php",
+        url: "http://m.weather.gov.ph/agaptest/outlook.php",
         async: false,
         success: function(myData){
           console.log(myData);
@@ -71,8 +73,8 @@ $(document).ready(function()
 function initialize(vLat, vLong, vZoom)
 {
  var arrLocations =[
-    ['Zamboanga', 6.916228, 122.069782],
-    ['Metro Davao', 7.100497, 125.608841],
+    ['Zamboanga', 6.920318, 122.086241],
+    ['Metro Davao', 7.098048, 125.610844],
     ['Valencia City', 7.865434, 125.169273],
     ['Cagayan De Oro', 8.456392, 124.627907],
     ['Tacloban City', 11.255724, 124.950940],
@@ -86,7 +88,7 @@ function initialize(vLat, vLong, vZoom)
     ['Baguio City', 16.3995547,120.5537555],
     ['Laoag City', 18.1981728,120.5276349],
     ['Tuguegarao City', 17.6022296,121.6894235],
-    ['Metro Manila', 14.5655922,120.8845468]
+    ['Metro Manila', 14.599598, 120.984797]
   ];
   vImageURL = "img/weather-icons/partly_cloudy_skies.png";
   var myMapStyle = setMyMapStyle();
@@ -104,9 +106,11 @@ function initialize(vLat, vLong, vZoom)
   map = new google.maps.Map(document.getElementById("map-canvas"), mapOptions);
   map.mapTypes.set("map_style", mapReference);
   map.setMapTypeId("map_style");
+  
 
   var infowindow = new google.maps.InfoWindow();
   var marker, i;
+  document.getElementById("issueddate").innerHTML = "<p>Date Issued: "+vDateIssued+"</p>";
 
   for(i=0; i<arrLocations.length; i++)
   {
@@ -118,16 +122,26 @@ function initialize(vLat, vLong, vZoom)
 
     google.maps.event.addListener(marker, 'click', (function(marker, i){
     return function(){
-      var vLayout = "<br /><table border='1'><tr><td colspan='5'><strong>"+arrCityName[i]+"</strong><br />Wind Strenght: "+arrWindStr[i]+"<br />Wind Direction: "+arrWindDir[i]+"</td></tr>";
-      vLayout += "<tr><td><img src="+arrIcon1[i]+"><br /><span>"+arrMin1[i]+" - "+arrMax1[i]+"&degC</span></td>";
-      vLayout += "<td><img src="+arrIcon2[i]+"><br /><span>"+arrMin2[i]+" - "+arrMax2[i]+"&degC</span></td>";
-      vLayout += "<td><img src="+arrIcon3[i]+"><br /><span>"+arrMin3[i]+" - "+arrMax3[i]+"&degC</span></td>";
-      vLayout += "<td><img src="+arrIcon4[i]+"><br /><span>"+arrMin4[i]+" - "+arrMax4[i]+"&degC</span></td>";
-      vLayout += "<td><img src="+arrIcon5[i]+"><br /><span>"+arrMin5[i]+" - "+arrMax5[i]+"&degC</span></td></tr></table>";
+      var vLayout = "<br /><table border='1'><tr><td colspan='5'><strong>"+arrCityName[i]+"</strong><br />Wind Strength: "+arrWindStr[i]+"<br />Wind Direction: "+arrWindDir[i]+"</td></tr>";
+      vLayout += "<tr><td><span><strong>"+displayDay(0)+"</strong></span><img src="+arrIcon1[i]+"><br /><span>"+arrMin1[i]+" - "+arrMax1[i]+"&degC</span></td>";
+      vLayout += "<td><span><strong>"+displayDay(1)+"</strong></span><img src="+arrIcon2[i]+"><br /><span>"+arrMin2[i]+" - "+arrMax2[i]+"&degC</span></td>";
+      vLayout += "<td><span><strong>"+displayDay(2)+"</strong></span><img src="+arrIcon3[i]+"><br /><span>"+arrMin3[i]+" - "+arrMax3[i]+"&degC</span></td>";
+      vLayout += "<td><span><strong>"+displayDay(3)+"</strong></span><img src="+arrIcon4[i]+"><br /><span>"+arrMin4[i]+" - "+arrMax4[i]+"&degC</span></td>";
+      vLayout += "<td><span><strong>"+displayDay(4)+"</strong></span><img src="+arrIcon5[i]+"><br /><span>"+arrMin5[i]+" - "+arrMax5[i]+"&degC</span></td></tr></table>";
       vLayout += "<p style='text-align:right !important; text-color:gray; font-size:small; font-style: italic'>Date Issued: "+vDateIssued+"</p>";
       infowindow.setContent(vLayout);
       infowindow.open(map, marker);
     }
   })(marker, i));
   }
+}
+
+function displayDay(z){
+  var parts, timepart;
+  parts = vDateIssued.split(' ');
+  timepart = parts[0].split('\n');
+  myDatestring = parts[1]+" "+ timepart[1] +", "+parts[2];
+  mydate = new Date(myDatestring);
+  mydate.setDate(mydate.getDate()+z);
+  return arrDay[mydate.getDay()];
 }

@@ -21,15 +21,18 @@ $(document).ready(function()
       
       $.ajax({
         type: "GET",
-        url: "http://iligtas.ph/agaptest/keycities.php",
+        url: "http://m.weather.gov.ph/agaptest/keycities.php",
         async: false,
         success: function(myData){
+          var vc = myData.result.data.length - 12;
           vDateIssued=myData.result.data[19].dateTime;
-          for(var i = 0; i + 18 < 30; i++){
-          arrCityName.push(myData.result.data[i+18].cityName);
-          arrIcon.push("img/weather-icons/" + myData.result.data[i+18].icon.replace(".gif", ".png"));
-          arrMinTemp.push(myData.result.data[i+18].min+"&degC");
-          arrMaxTemp.push(myData.result.data[i+18].max+"&degC");}
+
+          for(var i = 0; i<12; i++){
+          console.log(myData.result.data[i+vc].cityName)
+          arrCityName.push(myData.result.data[i+vc].cityName);
+          arrIcon.push("img/weather-icons/day" + myData.result.data[i+vc].icon+".png");
+          arrMinTemp.push(myData.result.data[i+vc].min+"&degC");
+          arrMaxTemp.push(myData.result.data[i+vc].max+"&degC");}
         }
       });
       google.maps.event.addDomListener(window, 'load',initialize(vLat, vLong, 6));
@@ -72,7 +75,10 @@ function initialize(vLat, vLong, vZoom)
 
   var infowindow = new google.maps.InfoWindow();
   var marker, i;
+  if(vDateIssued.includes("Today"))
+    vDateIssued = vDateIssued.replace("Today", "");
 
+  document.getElementById("issueddate").innerHTML = "<p>Date Issued: "+vDateIssued+"</p>";
   for(i=0; i<arrLocations.length; i++)
   {
     marker = new google.maps.Marker({

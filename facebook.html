@@ -10,20 +10,19 @@
 		<link rel="stylesheet" href="vendor/wow/animate.css" />
 		<link rel="stylesheet" href="css/nativedroid2.css" />
 		<link rel="stylesheet" href="css/pagasa.css" />
+		<meta http-equiv="Content-Security-Policy" 
+content="default-src *; 
+style-src * 'self' 'unsafe-inline' 'unsafe-eval'; 
+script-src * 'self' 'unsafe-inline' 'unsafe-eval';">
 		<style>/* Prevent FOUC */body { opacity: 0; }</style>
 		<style type="text/css">
-			
 			#showDaily,#showDailyHome {margin-left:12%;}
-			.forecast {margin-left:9%;padding-top:5%;}
-			.wIcon{margin-left: -24px;}
-			.inner span {font-weight:bold;}
-			</style>
-
+			.forecast {margin-left:12%;padding-top:5%;}
+			.wIcon{margin-left: -24px;}</style>
 	</head>
 	<body >
-
-		<div data-role="page" id="flood_advisories">
-	<div data-role="panel" id="leftpanel" data-display="overlay" data-position-fixed="true" >
+<div data-role="page" class="nd2-no-menu-swipe" id="twitter">
+			<div data-role="panel" id="leftpanel" data-display="overlay" data-position-fixed="true" >
 				<div class='nd2-sidepanel-profile wow fadeInDown'>
 					<img class='profile-background' src="bg.jpg" />
 					<div class="row">
@@ -97,44 +96,42 @@
 				<div data-role="collapsible" data-inset="false" data-collapsed-icon="carat-d" data-expanded-icon="carat-d" data-iconpos="right">
 					<h3>Social</h3>
 					<ul data-role="listview" data-icon="false">
-						<li><a href="facebook.html" data-ajax='false'>Facebook</a></li>	
-						<li><a href="twitter.html#twitter" data-ajax='false'>Twitter</a></li>				
+						<li><a href="facebook.html" data-ajax='false'>Facebook</a></li>				
+						<li><a href="twitter.html" data-ajax='false'>Twitter</a></li>				
 						<li><a href="podcast4.html#podcast" data-ajax='false'>Podcast</a></li>						
 					</ul>
 				</div>
-				
-	
 			</div>
 				<div data-role="header" data-position="fixed" class="wow fadeIn">
 					<a href="#leftpanel" class="ui-btn ui-btn-left wow fadeIn" data-wow-delay='0.8s'><i class="zmdi zmdi-menu"></i></a>
-					<h1 class="wow fadeIn" data-wow-delay='0.4s'>General Flood Advisories</h1>
-							 	<a   href="#sharePopupDialog" class="ui-btn ui-btn-right wow fadeIn" data-wow-delay='0.8s' data-rel="popup" data-position-to="window" data-transition="pop">
+					<h1 class="wow fadeIn" data-wow-delay='0.4s'>Facebook</h1>
+				 	<a   href="#sharePopupDialog" class="ui-btn ui-btn-right wow fadeIn" data-wow-delay='0.8s' data-rel="popup" data-position-to="window" data-transition="pop">
 								<i class='zmdi zmdi-share'></i>
 				</a>
-			</div>
+				
+				</div>		
 	<div data-role="popup" id="sharePopupDialog">
                 <div data-role="header">
                 	<h1 class='nd-title'><i class='zmdi zmdi-share'></i>&nbsp;SHARE</h1>
             	</div>
                 <div data-role="content">
-                    <a href="http://www.facebook.com/sharer/sharer.php?u=http://www.pagasa.dost.gov.ph/index.php/floods/general-flood-advisories"  data-role="button" data-inline="true" class="ui-btn " target="_blank"><i class='zmdi zmdi-facebook-box zmdi-hc-lg'></i> SHARE</a>
-					<a href="http://twitter.com/share?url=http://www.pagasa.dost.gov.ph/index.php/floods/general-flood-advisories" title="Share on Twitter"  data-role="button" data-inline="true" class="ui-btn  " target="_blank"><i class='zmdi zmdi-twitter-box zmdi-hc-lg'></i> TWEET</a>
-					<a href="https://plus.google.com/share?url=http://www.pagasa.dost.gov.ph/index.php/floods/general-flood-advisories" title="Share on Twitter"  data-role="button" data-inline="true" class="ui-btn  " target="_blank"><i class='zmdi zmdi-google-plus-box zmdi-hc-lg'></i> SHARE</a>
+                    <a href="http://www.facebook.com/sharer/sharer.php?u=http://www.pagasa.dost.gov.ph/index.php/general-weather/daily-weather-forecast&title=Weather"  data-role="button" data-inline="true" class="ui-btn " target="_blank"><i class='zmdi zmdi-facebook-box zmdi-hc-lg'></i> SHARE</a>
+					<a href="http://twitter.com/share?url=http://www.pagasa.dost.gov.ph/index.php/general-weather/daily-weather-forecast&title=Weather&text=Daily+Weather+%23PAGASA" title="Share on Twitter"  data-role="button" data-inline="true" class="ui-btn  " target="_blank"><i class='zmdi zmdi-twitter-box zmdi-hc-lg'></i> TWEET</a>
+					<a href="https://plus.google.com/share?url=http://www.pagasa.dost.gov.ph/index.php/general-weather/daily-weather-forecast&title=Weather&text=Daily+Weather+%23PAGASA" title="Share on Twitter"  data-role="button" data-inline="true" class="ui-btn  " target="_blank"><i class='zmdi zmdi-google-plus-box zmdi-hc-lg'></i> SHARE</a>
                     <a href="dialog/index.html" data-rel="back" data-role="button" data-inline="true" class="ui-btn ui-btn-primary"><i class='zmdi zmdi-cancel'></i> Cancel</a>
 
                 </div>
          </div>
-			<div role="main" class="ui-content" data-inset="false">
-					<img id="imgLoader" src="img/ballRing.gif" class="loading">
-					<div class="inner" style="style='text-align:justify;">
-					</div>
-			</div> 
-					<pre id="log"></pre>
-					<pre class="classList"></pre>
-			</div> 
-		</div> 
-		
-		
+		 
+		 
+			<div role="main" class="ui-content wow fadeIn" data-inset="false" data-wow-delay="0.2s">
+		<div class="nd2-card card-media-right card-media-small"> 
+		<iframe src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2FPAGASA.DOST.GOV.PH%2F%3Ffref%3Dts&tabs=timeline&width=480&height=500&small_header=true&adapt_container_width=true&hide_cover=false&show_facepile=false&appId=594915047190098" width="100%" height="600" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowTransparency="true"></iframe>
+			
+
+			</div>
+			</div>
+		</div>
 		<script src="cordova.js"></script>
 		<script src="telephonenumber.js"></script>
 		<script src="js/jquery.min.js"></script>
@@ -147,7 +144,10 @@
 		<script src="js/tweecool.min.js"></script>
 		<script src="js/jquery.rss.js"></script>
 		<script src="js/moment.min.js"></script>
-		<script src="js/internet.js"></script>
-		<script src="js/gfa.js"></script>
+		<script src="js/date.js"></script>
+		<script src="js/pagasa.js"></script>
+
+
+
 	</body>
 </html>

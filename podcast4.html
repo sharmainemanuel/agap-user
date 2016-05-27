@@ -18,6 +18,34 @@
 			.wIcon{margin-left: -24px;}
 			a.podtitles{text-transform:uppercase;text-decoration:none;}
 			.margin{padding: 20px;}
+
+
+			.audio-player, .audio-player div, .audio-player h2, .audio-player a, .audio-player span, .audio-player button {
+
+
+  position: relative;
+
+  margin: 0 auto;
+  background: #4c4e5a;
+  background: -webkit-linear-gradient(top, rgb(181, 232, 255) 0%, #0023FF 100%));
+  background: -moz-linear-gradient(top, rgb(181, 232, 255) 0%, #0023FF 100%));
+  background: -o-linear-gradient(top, rgb(181, 232, 255) 0%, #0023FF 100%));
+  background: -ms-linear-gradient(top, rgb(181, 232, 255) 0%, #0023FF 100%));
+  background: linear-gradient(top, rgb(181, 232, 255) 0%, #0023FF 100%);
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+}
+.audio-player h2 {
+  position: absolute;
+  top: 7px;
+  left: 10px;
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-weight: bold;
+  font-size: 16px;
+  color: #ececec;
+  text-shadow: 1px 1px 1px rgba(0,0,0,0.5);
+}
 			</style>
 
 	</head>
@@ -79,10 +107,10 @@
 				<div data-role="collapsible" data-inset="false" data-collapsed-icon="carat-d" data-expanded-icon="carat-d" data-iconpos="right">
 							<h3>Tropical Cyclone Warnings</h3>
 							<ul data-role="listview" data-icon="false">
-								<li><a href="weatherbulletin.html" data-ajax='false'>Weather Bulletin</a></li>
+								<li><a href="weatherbulletin.html" data-ajax='false'>Local Weather Bulletin</a></li>
 								<li><a href="track.html" data-ajax='false'>Tropical Cyclone Track</a></li>
 								<li><a href="hourlyupdate.html"  data-ajax='false'> Hourly Update</a></li>
-								<li><a href="warnings_shipping.html"  data-ajax='false'>Warning for Shipping</a></li>
+								<li><a href="warnings_shipping.html"  data-ajax='false'>Int'l Weather Bulletin</a></li>
 								</ul>
 				</div>
 				<ul data-role="listview" data-inset="false"></ul>
@@ -98,30 +126,40 @@
 				<div data-role="collapsible" data-inset="false" data-collapsed-icon="carat-d" data-expanded-icon="carat-d" data-iconpos="right">
 					<h3>Social</h3>
 					<ul data-role="listview" data-icon="false">
+						<li><a href="facebook.html" data-ajax='false'>Facebook</a></li>	
 						<li><a href="twitter.html#twitter" data-ajax='false'>Twitter</a></li>				
 						<li><a href="podcast4.html#podcast" data-ajax='false'>Podcast</a></li>						
 					</ul>
 				</div>
 				
-					<ul data-role="listview" data-inset="false"></ul>
-				<div data-role="collapsible" data-inset="false" data-collapsed-icon="carat-d" data-expanded-icon="carat-d" data-iconpos="right">
-					<h3>Real Time Weather</h3>
-					<ul data-role="listview" data-icon="false">
-						<li><a href="userlocation_cyclone.html" data-ajax='false'>User Location for Tropical Cyclone</a></li>						
-						<li><a href="userlocation_weather.html" data-ajax='false'>User Location for Weather</a></li>						
-						<li><a href="camera3.html" data-ajax='false'>Capture Image</a></li>						
-					
-					</ul>
-				</div>
+	
 			</div>
 				<div data-role="header" data-position="fixed" class="wow fadeIn">
 					<a href="#leftpanel" class="ui-btn ui-btn-left wow fadeIn" data-wow-delay='0.8s'><i class="zmdi zmdi-menu"></i></a>
 					<h1 class="wow fadeIn" data-wow-delay='0.4s'>Podcast</h1>
-			</div>
+				 	<a   href="#sharePopupDialog" class="ui-btn ui-btn-right wow fadeIn" data-wow-delay='0.8s' data-rel="popup" data-position-to="window" data-transition="pop">
+								<i class='zmdi zmdi-share'></i>
+				</a>
+				
+				</div>		
+	<div data-role="popup" id="sharePopupDialog">
+                <div data-role="header">
+                	<h1 class='nd-title'><i class='zmdi zmdi-share'></i>&nbsp;SHARE</h1>
+            	</div>
+                <div data-role="content">
+                    <a href="http://www.facebook.com/sharer/sharer.php?u=http://www.pagasa.dost.gov.ph/index.php/general-weather/daily-weather-forecast&title=Weather"  data-role="button" data-inline="true" class="ui-btn " target="_blank"><i class='zmdi zmdi-facebook-box zmdi-hc-lg'></i> SHARE</a>
+					<a href="http://twitter.com/share?url=http://www.pagasa.dost.gov.ph/index.php/general-weather/daily-weather-forecast&title=Weather&text=Daily+Weather+%23PAGASA" title="Share on Twitter"  data-role="button" data-inline="true" class="ui-btn  " target="_blank"><i class='zmdi zmdi-twitter-box zmdi-hc-lg'></i> TWEET</a>
+					<a href="https://plus.google.com/share?url=http://www.pagasa.dost.gov.ph/index.php/general-weather/daily-weather-forecast&title=Weather&text=Daily+Weather+%23PAGASA" title="Share on Twitter"  data-role="button" data-inline="true" class="ui-btn  " target="_blank"><i class='zmdi zmdi-google-plus-box zmdi-hc-lg'></i> SHARE</a>
+                    <a href="dialog/index.html" data-rel="back" data-role="button" data-inline="true" class="ui-btn ui-btn-primary"><i class='zmdi zmdi-cancel'></i> Cancel</a>
 
-
+                </div>
+         </div>
+		 
+		 
 			<div role="main" class="ui-content" data-inset="false">
-				<div class="nd2-card wow fadeIn inner" data-wow-delay="0.5s" ></div>
+		<img id="imgLoader" src="img/ballRing.gif" class="loading">
+				<div class="nd2-card wow fadeIn inner" data-wow-delay="0.5s" >
+				</div>
 
 			</div> 
 		</div> 
@@ -139,44 +177,7 @@
 		<script src="js/tweecool.min.js"></script>
 		<script src="js/jquery.rss.js"></script>
 		<script src="js/moment.min.js"></script>
-		
-		
-		<script>
-		 $(document).ready(function()
-      {
-	
-			$.ajax
-({
-  type: "GET",
-  url: "test.php",
-  async: false,
-  success: function (result2){
- 
-  	 	for (i=0; i<=result2.length; i++){
- 		var title = result2[i].item_title;
- 	 	var link = result2[i].item_link;
-
- 	 	var desc = result2[i].item_desc;
-
-
-			var pos = link.indexOf("=");		
-			var res = link.slice(40);
-  	 	console.log(title);
-  	 	  	 	console.log(link);
-  	 	  	 	  	 	console.log(desc);
-
-		$( ".inner" ).append("<div class=margin><h3 ><a class='podtitles' href="+link+">"+title+"</a></h3>"+desc+" <br><audio controls preload=auto><source id='vpodcast' src='http://podcast.pagasa.dost.gov.ph/media/"+res+"' type='audio/mpeg'></audio></div> ");
-
-  	 	}
-
-  }
-
-});
-
-
-
-});
-
-</script>
+		<script src="js/internet.js"></script>
+		<script src="js/podcast4.js"></script>
 	</body>
 </html>

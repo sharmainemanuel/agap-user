@@ -21,13 +21,13 @@ $(document).ready(function()
       
       $.ajax({
         type: "GET",
-        url: "http://iligtas.ph/agaptest/keycities.php",
+        url: "http://m.weather.gov.ph/agaptest/keycities.php",
         async: false,
         success: function(myData){
           vDateIssued=myData.result.data[19].dateTime;
           for(var i = 0; i< 15; i++){
           arrCityName.push(myData.result.data[i].cityName);
-          arrIcon.push("img/weather-icons/" + myData.result.data[i].icon.replace(".gif", ".png"));
+          arrIcon.push("img/weather-icons/day" + myData.result.data[i].icon+".png");
           arrMinTemp.push(myData.result.data[i].min+"&degC");
           arrMaxTemp.push(myData.result.data[i].max+"&degC");}
         }
@@ -75,7 +75,10 @@ function initialize(vLat, vLong, vZoom)
 
   var infowindow = new google.maps.InfoWindow();
   var marker, i;
+if(vDateIssued.includes("Today"))
+    vDateIssued = vDateIssued.replace("Today", "");
 
+  document.getElementById("issueddate").innerHTML = "<p>Date Issued: "+vDateIssued+"</p>";
   for(i=0; i<arrLocations.length; i++)
   {
     marker = new google.maps.Marker({
@@ -86,7 +89,7 @@ function initialize(vLat, vLong, vZoom)
 
     google.maps.event.addListener(marker, 'click', (function(marker, i){
     return function(){
-      infowindow.setContent("<table><td><img src='"+arrIcon[i]+"' alt='' /></td><td><strong>"+arrCityName[i]+"</strong><br /><span>Temperature: Min: "+arrMinTemp[i]+"; Max: "+arrMaxTemp[i]+"</span></td></table>"+"<p style='text-align:right !important; text-color:gray; font-size:small; font-style:italic'>Date Issued: "+vDateIssued+"</p>");
+      infowindow.setContent("<table><td><img src='"+arrIcon[i]+"' alt='' /></td><td><strong>"+arrCityName[i]+"</strong><br /><span>Temperature: "+arrMinTemp[i]+" - "+arrMaxTemp[i]+"</span></td></table>"+"<p style='text-align:right !important; text-color:gray; font-size:small; font-style:italic'>Date Issued: "+vDateIssued+"</p>");
       infowindow.open(map, marker);
     }
   })(marker, i));

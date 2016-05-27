@@ -4,7 +4,8 @@
 	<head>
 		<title>Project AGAP</title>
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-		<link rel="stylesheet" href="css/font-awesome.min.css" />
+		<link rel="stylesheet" href="css/material-design-iconic-font.min.css" />
+		
 		<link rel="stylesheet" href="css/jquery.mobile.min.css" />
 		<link rel="stylesheet" href="vendor/waves/waves.min.css" />
 		<link rel="stylesheet" href="vendor/wow/animate.css" />
@@ -12,17 +13,16 @@
 		<link rel="stylesheet" href="css/pagasa.css" />
 		<style>/* Prevent FOUC */body { opacity: 0; }</style>
 		<style type="text/css">
-			
 			#showDaily,#showDailyHome {margin-left:12%;}
-			.forecast {margin-left:9%;padding-top:5%;}
+			.forecast {margin-left:12%;padding-top:5%;}
 			.wIcon{margin-left: -24px;}
-		</style>
-
+			.inner span{font-weight:bold;}
+			.inner2 span{font-weight:bold;}
+			</style>
 	</head>
 	<body >
-
-		<div data-role="page" id="warnings_thunderstorms">
-		<div data-role="panel" id="leftpanel" data-display="overlay" data-position-fixed="true" >
+		<div data-role="page" class="nd2-no-menu-swipe" id="homepage">
+			<div data-role="panel" id="leftpanel" data-display="overlay" data-position-fixed="true" >
 				<div class='nd2-sidepanel-profile wow fadeInDown'>
 					<img class='profile-background' src="bg.jpg" />
 					<div class="row">
@@ -77,10 +77,10 @@
 				<div data-role="collapsible" data-inset="false" data-collapsed-icon="carat-d" data-expanded-icon="carat-d" data-iconpos="right">
 							<h3>Tropical Cyclone Warnings</h3>
 							<ul data-role="listview" data-icon="false">
-								<li><a href="weatherbulletin.html" data-ajax='false'>Weather Bulletin</a></li>
+										<li><a href="weatherbulletin.html" data-ajax='false'>Local Weather Bulletin</a></li>
 								<li><a href="track.html" data-ajax='false'>Tropical Cyclone Track</a></li>
 								<li><a href="hourlyupdate.html"  data-ajax='false'> Hourly Update</a></li>
-								<li><a href="warnings_shipping.html"  data-ajax='false'>Warning for Shipping</a></li>
+								<li><a href="warnings_shipping.html"  data-ajax='false'>Int'l Weather Bulletin</a></li>
 								</ul>
 				</div>
 				<ul data-role="listview" data-inset="false"></ul>
@@ -96,43 +96,69 @@
 				<div data-role="collapsible" data-inset="false" data-collapsed-icon="carat-d" data-expanded-icon="carat-d" data-iconpos="right">
 					<h3>Social</h3>
 					<ul data-role="listview" data-icon="false">
+						<li><a href="facebook.html" data-ajax='false'>Facebook</a></li>	
 						<li><a href="twitter.html#twitter" data-ajax='false'>Twitter</a></li>				
 						<li><a href="podcast4.html#podcast" data-ajax='false'>Podcast</a></li>						
 					</ul>
 				</div>
 				
-					<ul data-role="listview" data-inset="false"></ul>
-				<div data-role="collapsible" data-inset="false" data-collapsed-icon="carat-d" data-expanded-icon="carat-d" data-iconpos="right">
-					<h3>Real Time Weather</h3>
-					<ul data-role="listview" data-icon="false">
-						<li><a href="userlocation_cyclone.html" data-ajax='false'>User Location for Tropical Cyclone</a></li>						
-						<li><a href="userlocation_weather.html" data-ajax='false'>User Location for Weather</a></li>						
-						<li><a href="camera3.html" data-ajax='false'>Capture Image</a></li>						
-					
-					</ul>
-				</div>
+	
 			</div>
 				<div data-role="header" data-position="fixed" class="wow fadeIn">
 					<a href="#leftpanel" class="ui-btn ui-btn-left wow fadeIn" data-wow-delay='0.8s'><i class="zmdi zmdi-menu"></i></a>
-					<h1 class="wow fadeIn" data-wow-delay='0.4s'>Thunderstorms Warning</h1>
-			</div>
-
-			<div role="main" class="ui-content" data-inset="false">
+					<h1 class="wow fadeIn" data-wow-delay='0.4s'>Thunderstorm Warning</h1>
+		 	<a   href="#sharePopupDialog" class="ui-btn ui-btn-right wow fadeIn" data-wow-delay='0.8s' data-rel="popup" data-position-to="window" data-transition="pop">
+								<i class='zmdi zmdi-share'></i>
+				</a>
+		
+		
 				
-				<select id=div onchange="getData()">
-				<option value="" style="display:none;" >select region</option> 
-				<option value="NCR" >NCR</option> 
-				<option value="MIN" >Mindanao</option> 
-				<option value="SL" >South Luzon</option> 
-				<option value="NL" >North Luzon</option> 
-				<option value="VIS" >Visayas</option> 
-				</select>
-					<div class="inner" id="inner" ></div>
-						<pre id="log"></pre>
-						<pre class="classList"></pre>
-			</div> 
-		</div> 
-		<script src="cordova.js"></script>
+				</div>		
+	<div data-role="popup" id="sharePopupDialog">
+                <div data-role="header">
+                	<h1 class='nd-title'><i class='zmdi zmdi-share'></i>&nbsp;SHARE</h1>
+            	</div>
+                <div data-role="content">
+                    <a href="http://www.facebook.com/sharer/sharer.php?u=http://pagasa.dost.gov.ph/#rainfall-and-thunderstorm-warning"  data-role="button" data-inline="true" class="ui-btn " target="_blank"><i class='zmdi zmdi-facebook-box zmdi-hc-lg'></i> SHARE</a>
+					<a href="http://twitter.com/share?url=http://pagasa.dost.gov.ph/#rainfall-and-thunderstorm-warning" title="Share on Twitter"  data-role="button" data-inline="true" class="ui-btn  " target="_blank"><i class='zmdi zmdi-twitter-box zmdi-hc-lg'></i> TWEET</a>
+					<a href="https://plus.google.com/share?url=http://pagasa.dost.gov.ph/#rainfall-and-thunderstorm-warning" title="Share on Twitter"  data-role="button" data-inline="true" class="ui-btn  " target="_blank"><i class='zmdi zmdi-google-plus-box zmdi-hc-lg'></i> SHARE</a>
+                    <a href="dialog/index.html" data-rel="back" data-role="button" data-inline="true" class="ui-btn ui-btn-primary"><i class='zmdi zmdi-cancel'></i> Cancel</a>
+
+                </div>
+         </div>
+		 
+		 
+			<div role="main" class="ui-content wow fadeIn" data-inset="false" data-wow-delay="0.2s">
+			<div class="nd2-card nd3-card">
+						<div class="card-media">
+							<div data-role="nd2tab" data-tab="friends" data-swipe="true">		
+								<select id=div onchange="getData()">
+									<option value="" style="display:none;" >select region</option> 
+									<option value="NL" >Northern Luzon</option> 			
+									<option value="NCR" >NCR</option> 	
+									<option value="SL" >Southern Luzon</option> 
+									<option value="VIS" >Visayas</option> 
+									<option value="MIN" >Mindanao</option> 
+								</select>
+													
+									<div class="inner" id="inner" >	
+									
+					<img src="img/ts_details.PNG" width="100%">
+			</div>
+									
+									<pre id="log"></pre>
+									<pre class="classList"></pre>
+								</div>
+							</div>
+						</div>
+								
+			
+		</div>
+	</div>
+	
+	
+<script src="cordova.js"></script>
+		
 		<script src="js/jquery.min.js"></script>
 		<script src="js/jquery-ui.min.js"></script>
 		<script src="js/jquery.mobile.min.js"></script>
@@ -140,53 +166,13 @@
 		<script src="vendor/wow/wow.min.js"></script>
 		<script src="js/nativedroid2.js"></script>
 		<script src="nd2settings.js"></script>
+		<script src="js/tweecool.min.js"></script>
 		<script src="js/jquery.rss.js"></script>
 		<script src="js/moment.min.js"></script>
 		<script src="js/internet.js"></script>
-		
-		<script>
-		
-	
-	function getData(){
-	
-	
-		var divisionResult = document.getElementById('div').value;
-		$.ajax
-({
-  type: "GET",
-  url: "http://iligtas.ph/agaptest/ts_advisory.php",
-  async: false,
-  success: function (result2){
- 	var description = result2.result[0].Advisory;
- 	var description2 = result2.result[0].Advisory_2;
- 	var description3 = result2.result[0].Advisory_3;
-//	console.log(result2);
-		for(j=0; j<=result2.result.length; j++){
-			for(i=0; i<=result2.result.length;i++){
-				var division = result2.result[i][j].Division;
-				var Advisory = result2.result[i][j].Advisory;
-				var Advisory2 = result2.result[i][j].Advisory_2;
-				var Advisory3 = result2.result[i][j].Advisory_3;
-				var time = result2.result[i][j].Issued_Time;
-				var day = result2.result[i][j].Day;
-				var month = result2.result[i][j].Month;
-				var year = result2.result[i][j].Year;
-				var issued_at = time + " " +day+" " +month+ " " +year;
-				
-				
-				if(division == divisionResult){
-					document.getElementById('inner').innerHTML = "<p style=font-weight:bold>Thunderstorm Information</p><br><center><img src=img/newinfo.png width=30% height=30% ></center><br>Issued at :"+issued_at+ "<br><br>"+"Advisory I :"+Advisory +"	<br><br>Advisory II:"+Advisory2+"<br><br>Advisory III:"+Advisory3;
-			
-				}
-			
-				
-			}
-		}
-	}
-});
+		<script src="js/warnings_thunderstorms.js"></script>
+	<!--	<script src="js/watch_thunderstorms.js"></script>-->
 
 
-}
-		</script>
 	</body>
 </html>

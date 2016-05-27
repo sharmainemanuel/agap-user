@@ -19,7 +19,7 @@
 			.wIcon{margin-left: -24px;}</style>
 
 	</head>
-	<body >
+	<body>
 
 <div data-role="page" id="warnings_gale">
 		<div data-role="panel" id="leftpanel" data-display="overlay" data-position-fixed="true" >
@@ -77,10 +77,10 @@
 				<div data-role="collapsible" data-inset="false" data-collapsed-icon="carat-d" data-expanded-icon="carat-d" data-iconpos="right">
 							<h3>Tropical Cyclone Warnings</h3>
 							<ul data-role="listview" data-icon="false">
-								<li><a href="weatherbulletin.html" data-ajax='false'>Weather Bulletin</a></li>
+								<li><a href="weatherbulletin.html" data-ajax='false'>Local Weather Bulletin</a></li>
 								<li><a href="track.html" data-ajax='false'>Tropical Cyclone Track</a></li>
 								<li><a href="hourlyupdate.html"  data-ajax='false'> Hourly Update</a></li>
-								<li><a href="warnings_shipping.html"  data-ajax='false'>Warning for Shipping</a></li>
+								<li><a href="warnings_shipping.html"  data-ajax='false'>Int'l Weather Bulletin</a></li>
 								</ul>
 				</div>
 				<ul data-role="listview" data-inset="false"></ul>
@@ -96,35 +96,66 @@
 				<div data-role="collapsible" data-inset="false" data-collapsed-icon="carat-d" data-expanded-icon="carat-d" data-iconpos="right">
 					<h3>Social</h3>
 					<ul data-role="listview" data-icon="false">
+						<li><a href="facebook.html" data-ajax='false'>Facebook</a></li>	
 						<li><a href="twitter.html#twitter" data-ajax='false'>Twitter</a></li>				
 						<li><a href="podcast4.html#podcast" data-ajax='false'>Podcast</a></li>						
 					</ul>
 				</div>
 				
-					<ul data-role="listview" data-inset="false"></ul>
-				<div data-role="collapsible" data-inset="false" data-collapsed-icon="carat-d" data-expanded-icon="carat-d" data-iconpos="right">
-					<h3>Real Time Weather</h3>
-					<ul data-role="listview" data-icon="false">
-						<li><a href="userlocation_cyclone.html" data-ajax='false'>User Location for Tropical Cyclone</a></li>						
-						<li><a href="userlocation_weather.html" data-ajax='false'>User Location for Weather</a></li>						
-						<li><a href="camera3.html" data-ajax='false'>Capture Image</a></li>						
-					
-					</ul>
-				</div>
+	
 			</div>
 				<div data-role="header" data-position="fixed" class="wow fadeIn">
 					<a href="#leftpanel" class="ui-btn ui-btn-left wow fadeIn" data-wow-delay='0.8s'><i class="zmdi zmdi-menu"></i></a>
-					<h1 class="wow fadeIn" data-wow-delay='0.4s'>Gale Warning</h1>
-			</div>
+					<h1 class="wow fadeIn" data-wow-delay='0.4s'> Gale Warning</h1>
+			 	<a   href="#sharePopupDialog" class="ui-btn ui-btn-right wow fadeIn" data-wow-delay='0.8s' data-rel="popup" data-position-to="window" data-transition="pop">
+								<i class='zmdi zmdi-share'></i>
+				</a>
+				
+				</div>		
+	<div data-role="popup" id="sharePopupDialog">
+                <div data-role="header">
+                	<h1 class='nd-title'><i class='zmdi zmdi-share'></i>&nbsp;SHARE</h1>
+            	</div>
+                <div data-role="content">
+                    <a href="http://www.facebook.com/sharer/sharer.php?u=http://pagasa.dost.gov.ph/index.php/marine/gale-warning"  data-role="button" data-inline="true" class="ui-btn " target="_blank"><i class='zmdi zmdi-facebook-box zmdi-hc-lg'></i> SHARE</a>
+					<a href="http://twitter.com/share?url=http://pagasa.dost.gov.ph/index.php/marine/gale-warningA" title="Share on Twitter"  data-role="button" data-inline="true" class="ui-btn  " target="_blank"><i class='zmdi zmdi-twitter-box zmdi-hc-lg'></i> TWEET</a>
+					<a href="https://plus.google.com/share?url=http://pagasa.dost.gov.ph/index.php/marine/gale-warning" title="Share on Twitter"  data-role="button" data-inline="true" class="ui-btn  " target="_blank"><i class='zmdi zmdi-google-plus-box zmdi-hc-lg'></i> SHARE</a>
+                    <a href="dialog/index.html" data-rel="back" data-role="button" data-inline="true" class="ui-btn ui-btn-primary"><i class='zmdi zmdi-cancel'></i> Cancel</a>
+
+                </div>
+         </div>
+		 
+		 
 			<div role="main" class="ui-content" data-inset="false">
-				<div role="main" class="ui-content" data-inset="false">
-					<div class="inner">
+
+				<img id="imgLoader" src="img/ballRing.gif" class="loading">
+				<div class="nd2-card">
+					<div class="card-media">
+					
+					
+						<select name="seaboardlist" id="seaboardlist" onchange="viewnow()">
+							<option value=0 selected hidden>[Select a Seaboard]</option>
+						</select>
+						<div id="gale-header"></div>	
+						<div>
+							<p id="seaboard"></p>
+							<p id="vdate"></p>
+							<p id="vtime"></p>
+							<p id="seaboardarea"></p>
+							<p id="weather"></p>
+							<p id="windforce"></p>
+							<p id="seacondition"></p>
+							<p id="waveheight"></p>
+
+						</div>
 					</div>
-				</div> 
+				</div>
+
 			</div> 
 		</div> 
 			<pre id="log"></pre>
 			<pre class="classList"></pre>
+
 		
 		<script src="cordova.js"></script>
 		<script src="js/jquery.min.js"></script>
@@ -137,38 +168,6 @@
 		<script src="js/jquery.rss.js"></script>
 		<script src="js/moment.min.js"></script>
 		<script src="js/internet.js"></script>
-		<script>
-
-				$(document).ready(function(){
-		$.ajax
-({
-
-  type: "GET",
-  url: "http://iligtas.ph/agaptest/gen_gale.php",
-  async: false,
-
-  success: function (result2){
-
- 	var time = result2.result[0].time;
- 	var date = result2.result[0].date;
- 	var seaboard = result2.result[0].seaboard;
- 	var seaboardarea = result2.result[0].seaboardarea;
- 	var weather = result2.result[0].weather;
- 	var windforce = result2.result[0].windforce;
- 	var seacondition = result2.result[0].seacondition;
- 	var waveheight = result2.result[0].waveheight;
-
-
-	console.log(time);
-	//$( ".inner" ).append("<p>"+description+"<br><br>"+description2+"<br><br>"+description3+"<br><br>"+description4+"</p>");
-	$( ".inner" ).append("<p>Issued at:<br> "+time+","+date+"</p><p>Seaboard:<br> "+seaboard+ "<br>"+seaboardarea+"</p><p>Weather:<br> "+weather+ "</p><p>Wind Force:<br> "+windforce+ "</p><p>Sea Condition:<br> "+seacondition+ "</p><p>Wave Height:<br> "+waveheight+ "</p>");
-	},  error: function (request, textStatus, errorThrown) {
-        console.log(request.responseText);
-        console.log(textStatus);
-        console.log(errorThrown);
-    }
-});
-});
-		</script>
+		<script src="js/warnings_gale.js"></script>
 	</body>
 </html>
