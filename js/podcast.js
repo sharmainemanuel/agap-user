@@ -1,1 +1,25 @@
-$(document).ready(function(){$.get("Mydata.xml",function(d){$("body").append("<h1> Recommended Web Development Books </h1>"),$("body").append("<dl />"),$(d).find("book").each(function(){var d=$(this),t=d.attr("title"),a=d.find("description").text(),e=d.attr("imageurl"),n='<dt> <img class="bookImage" alt="" src="'+e+'" /> </dt>';n+='<dd> <span class="loadingPic" alt="Loading" />',n+='<p class="title">'+t+"</p>",n+="<p> "+a+"</p>",n+="</dd>",$("dl").append($(n)),$(".loadingPic").fadeOut(1400)})})});
+ $(document).ready(function()
+      {
+        $.get('Mydata.xml', function(d){
+        $('body').append('<h1> Recommended Web Development Books </h1>');
+        $('body').append('<dl />');
+ 
+        $(d).find('book').each(function(){
+ 
+            var $book = $(this); 
+            var title = $book.attr("title");
+            var description = $book.find('description').text();
+            var imageurl = $book.attr('imageurl');
+ 
+            var html = '<dt> <img class="bookImage" alt="" src="' + imageurl + '" /> </dt>';
+            html += '<dd> <span class="loadingPic" alt="Loading" />';
+            html += '<p class="title">' + title + '</p>';
+            html += '<p> ' + description + '</p>' ;
+            html += '</dd>';
+ 
+            $('dl').append($(html));
+             
+            $('.loadingPic').fadeOut(1400);
+        });
+    });
+});
