@@ -287,6 +287,7 @@ script-src * 'self' 'unsafe-inline' 'unsafe-eval';">
 			    entryTemplate: '{bodyPlain}',
 				effect: 'slideFastSynced',
 			        }).show();*/
+					
 			});
 		</script>
 
@@ -463,7 +464,7 @@ function getData(){
 	var  issued_date = myData.result[4].date;
 	var  forecast = myData.result[4].forecast;
 		$("#rss-feeds").html("Issued Date: "+issued_time+", "+issued_date+"</br>"+forecast);
-			//setTimeout(function(){$('#imgLoader2').fadeOut();},500);}
+			setTimeout(function(){$('#imgLoader2').fadeOut();},500);}
 	}
 	
 	});
