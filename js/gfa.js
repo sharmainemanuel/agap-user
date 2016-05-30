@@ -10,7 +10,7 @@
 	setTimeout(function(){
 		$('#imgLoader').fadeOut();
 	if(result2.result == "" || result2.result == null){
-			$( ".inner" ).html("As of today there is no flood advisory");
+			$( ".inner" ).html("<h2>As of today there is no flood advisory</h2>");
 	}
 	else{
  	var region = result2.result['26f22ef9-c7af-4474-b3a1-85dd44a74ba6'].info.parameter.value;

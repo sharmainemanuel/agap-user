@@ -31,7 +31,6 @@ $(document).ready(function()
         url: "http://m.weather.gov.ph/agaptest/outlook.php",
         async: false,
         success: function(myData){
-          console.log(myData);
           vDateIssued = myData.result.data[0].date;
           for(var i = 0; i < 16; i++){
           arrCityName.push(myData.result.data[i].cityName);
@@ -123,11 +122,11 @@ function initialize(vLat, vLong, vZoom)
     google.maps.event.addListener(marker, 'click', (function(marker, i){
     return function(){
       var vLayout = "<br /><table border='1'><tr><td colspan='5'><strong>"+arrCityName[i]+"</strong><br />Wind Strength: "+arrWindStr[i]+"<br />Wind Direction: "+arrWindDir[i]+"</td></tr>";
-      vLayout += "<tr><td><span><strong>"+displayDay(0)+"</strong></span><img src="+arrIcon1[i]+"><br /><span>"+arrMin1[i]+" - "+arrMax1[i]+"&degC</span></td>";
-      vLayout += "<td><span><strong>"+displayDay(1)+"</strong></span><img src="+arrIcon2[i]+"><br /><span>"+arrMin2[i]+" - "+arrMax2[i]+"&degC</span></td>";
-      vLayout += "<td><span><strong>"+displayDay(2)+"</strong></span><img src="+arrIcon3[i]+"><br /><span>"+arrMin3[i]+" - "+arrMax3[i]+"&degC</span></td>";
-      vLayout += "<td><span><strong>"+displayDay(3)+"</strong></span><img src="+arrIcon4[i]+"><br /><span>"+arrMin4[i]+" - "+arrMax4[i]+"&degC</span></td>";
-      vLayout += "<td><span><strong>"+displayDay(4)+"</strong></span><img src="+arrIcon5[i]+"><br /><span>"+arrMin5[i]+" - "+arrMax5[i]+"&degC</span></td></tr></table>";
+      vLayout += "<tr><td><span><strong>"+displayDay(0)+"</strong></span><br /><img src="+arrIcon1[i]+"><br /><span>"+arrMin1[i]+" - "+arrMax1[i]+"&degC</span></td>";
+      vLayout += "<td><span><strong>"+displayDay(1)+"</strong></span><br /><img src="+arrIcon2[i]+"><br /><span>"+arrMin2[i]+" - "+arrMax2[i]+"&degC</span></td>";
+      vLayout += "<td><span><strong>"+displayDay(2)+"</strong></span><br /><img src="+arrIcon3[i]+"><br /><span>"+arrMin3[i]+" - "+arrMax3[i]+"&degC</span></td>";
+      vLayout += "<td><span><strong>"+displayDay(3)+"</strong></span><br /><img src="+arrIcon4[i]+"><br /><span>"+arrMin4[i]+" - "+arrMax4[i]+"&degC</span></td>";
+      vLayout += "<td><span><strong>"+displayDay(4)+"</strong></span><br /><img src="+arrIcon5[i]+"><br /><span>"+arrMin5[i]+" - "+arrMax5[i]+"&degC</span></td></tr></table>";
       vLayout += "<p style='text-align:right !important; text-color:gray; font-size:small; font-style: italic'>Date Issued: "+vDateIssued+"</p>";
       infowindow.setContent(vLayout);
       infowindow.open(map, marker);

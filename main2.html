@@ -16,12 +16,75 @@ script-src * 'self' 'unsafe-inline' 'unsafe-eval';">
 		<link rel="stylesheet" href="css/pagasa.css" />
 		<style>/* Prevent FOUC */body { opacity: 0; }</style>
 		<style type="text/css">
+		
+.pst {
+    padding: 10px;
+    text-align: center;
+}
+
+div#msg {
+    padding: 20px;
+    text-align: center;
+    font-weight: bold;
+}
 			#showDaily {margin-left:12%;}
 			.forecast {margin-left:12%;padding-top:5%;}
 			.wIcon{margin-left: -24px;}
 			span{margin-left:20px;}</style>
 <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?sensor=false&libraries=geometry,places&ext=.js"></script>
-    
+
+<script type="text/javascript">
+function AjaxFunction()
+{
+var httpxml;
+try
+  {
+  // Firefox, Opera 8.0+, Safari
+  httpxml=new XMLHttpRequest();
+  }
+catch (e)
+  {
+  // Internet Explorer
+		  try
+   			 		{
+   				 httpxml=new ActiveXObject("Msxml2.XMLHTTP");
+    				}
+  			catch (e)
+    				{
+    			try
+      		{
+      		httpxml=new ActiveXObject("Microsoft.XMLHTTP");
+     		 }
+    			catch (e)
+      		{
+      		alert("Your browser does not support AJAX!");
+      		return false;
+      		}
+    		}
+  }
+function stateck() 
+    {
+    if(httpxml.readyState==4)
+      {
+document.getElementById("msg").innerHTML=httpxml.responseText;
+//document.getElementById("msg").style.background='#f1f1f1';
+      }
+    }
+	var url="http://m.weather.gov.ph/agaptest/pagasa_server_time.php";
+url=url+"?sid="+Math.random();
+httpxml.onreadystatechange=stateck;
+httpxml.open("GET",url,true);
+httpxml.send(null);
+tt=timer_function();
+  }
+
+///////////////////////////
+function timer_function(){
+var refresh=1000; // Refresh rate in milli seconds
+mytime=setTimeout('AjaxFunction();',refresh)
+}
+
+</script>    
 </head>
 
 <body>
@@ -56,7 +119,7 @@ script-src * 'self' 'unsafe-inline' 'unsafe-eval';">
 				<div data-role="collapsible" data-inset="false"  data-collapsed-icon="carat-d" data-expanded-icon="carat-d" data-iconpos="right">
 					<h3>General Weather</h3>
 					<ul data-role="listview" data-inset="false" data-icon="false">
-						<li><a href="camera3.html" data-ajax='false' data-icon="false">Daily</a></li>
+						<li><a href="main2.html#homepage" data-ajax='false' data-icon="false">Daily</a></li>
 						<li><a href="keycities.html#keycities" data-ajax='false' data-icon="false">Key Cities</a></li>
 						<li><a href="tourist.html#tourist" data-ajax='false' data-icon="false">Tourist</a></li>
 						<li><a href="local.html#local"  data-ajax='false'>Local Cities</a></li>
@@ -114,16 +177,7 @@ script-src * 'self' 'unsafe-inline' 'unsafe-eval';">
 					</ul>
 				</div>
 				
-				<ul data-role="listview" data-inset="false"></ul>
-				<div data-role="collapsible" data-inset="false" data-collapsed-icon="carat-d" data-expanded-icon="carat-d" data-iconpos="right">
-					<h3>Real Time Weather</h3>
-					<ul data-role="listview" data-icon="false">
-						<li><a href="userlocation_cyclone.html" data-ajax='false'>User Location for Tropical Cyclone</a></li>						
-						<li><a href="userlocation_weather.html" data-ajax='false'>User Location for Weather</a></li>						
-						<li><a href="camera3.html" data-ajax='false'>Capture Image</a></li>						
-					
-					</ul>
-				</div>
+	
 			</div>
 			</div>
 				<div data-role="header" data-position="fixed" class="wow fadeIn">
@@ -141,15 +195,16 @@ script-src * 'self' 'unsafe-inline' 'unsafe-eval';">
 			</div>
 
 			<div role="main" class="ui-content wow fadeIn" data-inset="false" data-wow-delay="0.2s">
+	
 			<div data-role="nd2tab" data-tab="friends" data-swipe="true">	
-				<div class="nd2-card nd2-card card-media-right card-media-small clr-bg-cyan" >
+			
 					
-				<iframe id="blockrandom" name="Philippine Standard Time" src="https://oras.pagasa.dost.gov.ph/dateandtime.shtml" style="width:100%" height="95" scrolling="no" frameborder="0" class="wrapper">No Iframes</iframe>
-				</div>
 			<div id="demo"> </div>	
 		<img id="imgLoader" src="img/ballRing.gif" style="width:10%;opacity:0.5;margin-left:auto;margin-right:auto;display:block; position: relative;">
 		<img id="imgLoader2" src="img/ballRing.gif" style="width:10%;opacity:0.5;margin-left:auto;margin-right:auto;display:block; position: relative;">
 		
+		
+		<div class="nd2-card nd2-card card-media-right card-media-small clr-bg-cyan"><div class="pst">Philippine Standard Time  </div><div data-wow-delay='0.4s' id="msg"></div></div>	
 
 		<div class="nd2-card nd2-card card-media-right card-media-small clr-bg-cyan"><div data-wow-delay='0.4s' id="showHome"></div></div>	
 		
@@ -163,9 +218,14 @@ script-src * 'self' 'unsafe-inline' 'unsafe-eval';">
 			
 			<div data-role="nd2tab" data-tab="work" data-swipe="true">
 					<div class="nd2-card card-media-right card-media-small">
+				<div >
+				
 					<div class="card-title has-avatar has-supporting-text">
+					
 						<img class="card-avatar" src="img/alert-circle.png">
+					
 						<h3 class="card-primary-title">Daily Forecast</h3>
+					
 						<h5 class="card-supporting-text"><div id="rss-feeds" style='text-align: justify;'></div></h5>
 					</div>
 				
@@ -286,7 +346,7 @@ script-src * 'self' 'unsafe-inline' 'unsafe-eval';">
 			}, false);
 
 
-	/*		$("#rss-feeds-date").rss("http://pagasa.dost.gov.ph/prsdcodes/rss/forecast/forecast.xml", {
+			$("#rss-feeds-date").rss("http://pagasa.dost.gov.ph/prsdcodes/rss/forecast/forecast.xml", {
 			dateFormat: 'MMM Do YY, h:mm a',
 			    entryTemplate: '{date}',
 				effect: 'slideFastSynced',
@@ -295,8 +355,7 @@ script-src * 'self' 'unsafe-inline' 'unsafe-eval';">
 			$("#rss-feeds").rss("http://pagasa.dost.gov.ph/prsdcodes/rss/forecast/forecast.xml", {
 			    entryTemplate: '{bodyPlain}',
 				effect: 'slideFastSynced',
-			        }).show();*/
-					
+			        }).show();
 			});
 		</script>
 
@@ -338,7 +397,9 @@ script-src * 'self' 'unsafe-inline' 'unsafe-eval';">
 	}
 	</script>
 	
-
+	
+	
+		
 		<script>
 
 	var geocoder, vlatlng, city, state, geocodingAPI;
@@ -367,6 +428,7 @@ script-src * 'self' 'unsafe-inline' 'unsafe-eval';">
   	];
     
     window.onload = function () {
+	timer_function();
         if ( navigator.geolocation )
             navigator.geolocation.getCurrentPosition( UserLocation );
         else
@@ -426,7 +488,7 @@ script-src * 'self' 'unsafe-inline' 'unsafe-eval';">
 	        }
 	        if (state != '') 
 	        {
-				$("#showHome").html("<div class='card-title'><h3 class='card-primary-title'>Current Location<div class='card-media'><img style='width:50%' src='img/pin.png'></div><br><strong>"+city+", "+state+"</strong></h3></div>");
+				$("#showHome").html("<div class='card-title'><h3 class='card-primary-title'>Current Location<div class='card-media'><img style='width:50%' src='img/pin.png'></div><br><strong>"+city+" </strong></h3></div>");
 				$('#imgLoader').fadeOut();	
 	        }
 	    }
@@ -442,14 +504,14 @@ function getData(){
 	async: false,
 	success: function(myData){
 	console.log(cities[closest][0]);
-   	for(var i = 0; i < 16; i++){
+   	for(var i = 0; i < myData.result.data.length -1; i++){
   
 		arrCityName.push(myData.result.data[i].cityName);
 		arrMin1.push(myData.result.data[i].day1.min);
 		arrMax1.push(myData.result.data[i].day1.max);
 		arrIcon1.push(myData.result.data[i].day1.logo);
 
-		if(arrCityName[i].includes(cities[closest][0])){
+		if(arrCityName[i] == cities[closest][0]){
 			$("#showDailyHome").html("<br><span><br>Weather of city <br>	 nearest your location</span><div class='card-media'><img width='100%' src='img/weather_icons/"+ arrIcon1[i]  + ".png'></div><div class='card-title'><h3 class='card-primary-title'><strong>"+ arrCityName[i] +" <br>"+arrMin1[i] + "&#176;C | "+arrMax1[i] + "&#176;C </strong></h3<hr></div>");
 			setTimeout(function(){$('#imgLoader2').fadeOut();},500);}
 	}
@@ -459,26 +521,6 @@ function getData(){
 }
 </script>
 
-
-	
-	<script>
-	
-		$.ajax({
-	type: "GET",
-	url: "http://m.weather.gov.ph/agaptest/main_local.php",
-	async: false,
-	success: function(myData){
-	console.log(myData);
-	var  issued_time = myData.result[4].time;
-	var  issued_date = myData.result[4].date;
-	var  forecast = myData.result[4].forecast;
-		$("#rss-feeds").html("Issued Date: "+issued_time+", "+issued_date+"</br>"+forecast);
-			setTimeout(function(){$('#imgLoader2').fadeOut();},500);
-	}
-	
-	});
-	</script>
-		
 </body>
 
 </html>

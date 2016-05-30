@@ -19,7 +19,7 @@ $.ajax
 	
 	 var htmlData = "";
 	 htmlData += "<p><strong>GALE WARNING:</strong>"+warningNum+"<br></p>";
-	 htmlData += "<p><strong>For:</strong>"+synop1+"<br></p>";
+	 htmlData += "<p><strong>For:</strong><br/>"+synop1+"<br></p>";
 	 htmlData += "<p><strong>Issued Date:</strong>"+issuedTime+","+issuedDate+"<br></p>";
 	 htmlData += "<p>"+synop2+"</p>";
 	 
@@ -66,9 +66,9 @@ function viewnow(){
 	var indx = document.getElementById("seaboardlist").value - 1;
 	//document.getElementById("vdate").innerHTML = "<strong>Date: </strong>" + adate[indx];
 //	document.getElementById("vtime").innerHTML = "<strong>Time: </strong>" + atime[indx];
-	document.getElementById("seaboard").innerHTML = "<strong>Seaboard:<br /> " + aseaboard[indx] + "</strong>";
-	document.getElementById("seaboardarea").innerHTML = "<strong>Seaboardarea: </strong>" + aseaboardarea[indx];
-	document.getElementById("weather").innerHTML = "<strong>Weather: </strong>" + aweather[indx];
+	document.getElementById("seaboard").innerHTML = "<strong>Seaboard:<br/> " + aseaboard[indx] + "</strong>";
+	document.getElementById("seaboardarea").innerHTML = "<strong>Seaboardarea: </strong> <br/>" + aseaboardarea[indx];
+	document.getElementById("weather").innerHTML = "<strong>Weather: </strong><br/>" + aweather[indx];
 	document.getElementById("windforce").innerHTML = "<strong>Windforce: </strong>" + awindforce[indx];
 	document.getElementById("seacondition").innerHTML = "<strong>Seacondition: </strong>" + aseacondition[indx];
 	document.getElementById("waveheight").innerHTML = "<strong>Waveheight: </strong>" + awaveheight[indx];

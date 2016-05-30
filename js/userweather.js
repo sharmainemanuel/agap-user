@@ -9,6 +9,7 @@ var arrIcon2=[], arrMin2=[], arrMax2=[];
 var arrIcon3=[], arrMin3=[], arrMax3=[];
 var arrIcon4=[], arrMin4=[], arrMax4=[];
 var arrIcon5=[], arrMin5=[], arrMax5=[];
+var currentLat, currentLon;
 
 $(document).ready(function()
 {
@@ -60,11 +61,11 @@ $(document).ready(function()
           arrMax5.push(myData.result.data[i].day5.max);
           
         }}
-      });
+      }); 
       navigator.geolocation.getCurrentPosition(function(position){
-      vLat=position.coords.latitude; 
-      vLong=position.coords.longitude;
-      console.log(vLat + ", " + vLong);
+      vLat=position.coords.latitude; currentLat = vLat;
+      vLong=position.coords.longitude; currentLon = vLong;
+      console.log(currentLat + ", " + currentLon);
        google.maps.event.addDomListener(window, 'load',initialize(vLat, vLong, 10));
     });
       //google.maps.event.addDomListener(window, 'load',initialize(vLat, vLong, 6));
@@ -90,7 +91,7 @@ function initialize(vLat, vLong, vZoom)
     ['Baguio City', 16.3995547,120.5537555],
     ['Laoag City', 18.1981728,120.5276349],
     ['Tuguegarao City', 17.6022296,121.6894235],
-    ['Metro Manila', 14.5655922,120.8845468]
+     ['Metro Manila', 14.599598, 120.984797]
   ];
   vImageURL = "img/weather-icons/partly_cloudy_skies.png";
   var myMapStyle = setMyMapStyle();
@@ -112,6 +113,7 @@ function initialize(vLat, vLong, vZoom)
   var infowindow = new google.maps.InfoWindow();
   var marker, i;
 
+  marker = new google.maps.Marker({position: new google.maps.LatLng(currentLat, currentLon), map:map});
   for(i=0; i<arrLocations.length; i++)
   {
     marker = new google.maps.Marker({

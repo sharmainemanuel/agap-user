@@ -117,7 +117,8 @@
 
 			
 					
-				$.getJSON("http://iligtas.ph/agap/mobile/login.php?callback=?", lform.serialize(),function(data)
+			//	$.getJSON("http://iligtas.ph/agap/mobile/login.php?callback=?", lform.serialize(),function(data)
+				$.getJSON("http://m.weather.gov.ph/agaptest//login.php?callback=?", lform.serialize(),function(data)
 				{
 					if (data.verified == "v1")
 					{

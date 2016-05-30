@@ -32,7 +32,6 @@ $(document).ready(function()
         success: function(myData){
             setTimeout(function(){
             $('#imgLoader').fadeOut();
-          console.log(myData.result[1].city_name);
           vDateIssued = myData.result[0].date;
           for(var i = 0; i < 13; i++){
           arrCityName.push(myData.result[i].city_name);
@@ -107,8 +106,8 @@ function initialize(vLat, vLong, vZoom)
 
   var infowindow = new google.maps.InfoWindow();
   var marker, i;
-  if(vDateIssued.includes("Today"))
-    vDateIssued = vDateIssued.replace("Today", "");
+  // if(vDateIssued.includes("Today"))
+  //   vDateIssued = vDateIssued.replace("Today", "");
 
   document.getElementById("issueddate").innerHTML = "<p>Date Issued: "+vDateIssued+"</p>";
   for(i=0; i<arrLocations.length; i++)
@@ -122,11 +121,11 @@ function initialize(vLat, vLong, vZoom)
     google.maps.event.addListener(marker, 'click', (function(marker, i){
     return function(){
       var vLayout = "<br /><table border='1'><tr><td colspan='5'><strong>"+arrCityName[i]+"</strong><br /></td></tr>";
-      vLayout += "<tr><td><span><strong>"+displayDay(0)+"</strong></span><img src="+arrIcon1[i]+"><br /><span>"+arrMin1[i]+" - "+arrMax1[i]+"&degC</span></td>";
-      vLayout += "<td><span><strong>"+displayDay(1)+"</strong></span><img src="+arrIcon2[i]+"><br /><span>"+arrMin2[i]+" - "+arrMax2[i]+"&degC</span></td>";
-      vLayout += "<td><span><strong>"+displayDay(2)+"</strong></span><img src="+arrIcon3[i]+"><br /><span>"+arrMin3[i]+" - "+arrMax3[i]+"&degC</span></td>";
-      vLayout += "<td><span><strong>"+displayDay(3)+"</strong></span><img src="+arrIcon4[i]+"><br /><span>"+arrMin4[i]+" - "+arrMax4[i]+"&degC</span></td>";
-      vLayout += "<td><span><strong>"+displayDay(4)+"</strong></span><img src="+arrIcon5[i]+"><br /><span>"+arrMin5[i]+" - "+arrMax5[i]+"&degC</span></td></tr></table>";
+      vLayout += "<tr><td><span><strong>"+displayDay(0)+"</strong></span><br /><img src="+arrIcon1[i]+"><br /><span>"+arrMin1[i]+" - "+arrMax1[i]+"&degC</span></td>";
+      vLayout += "<td><span><strong>"+displayDay(1)+"</strong></span><br /><img src="+arrIcon2[i]+"><br /><span>"+arrMin2[i]+" - "+arrMax2[i]+"&degC</span></td>";
+      vLayout += "<td><span><strong>"+displayDay(2)+"</strong></span><br /><img src="+arrIcon3[i]+"><br /><span>"+arrMin3[i]+" - "+arrMax3[i]+"&degC</span></td>";
+      vLayout += "<td><span><strong>"+displayDay(3)+"</strong></span><br /><img src="+arrIcon4[i]+"><br /><span>"+arrMin4[i]+" - "+arrMax4[i]+"&degC</span></td>";
+      vLayout += "<td><span><strong>"+displayDay(4)+"</strong></span><br /><img src="+arrIcon5[i]+"><br /><span>"+arrMin5[i]+" - "+arrMax5[i]+"&degC</span></td></tr></table>";
       vLayout += "<p style='text-align:right !important; text-color:gray; font-size:small; font-style: italic'>Date Issued: "+vDateIssued+"</p>";
       infowindow.setContent(vLayout);
       infowindow.open(map, marker);
@@ -141,7 +140,6 @@ function displayDay(z){
   parts = vDateIssued.split(' ');
   //timepart = parts[0].split('\n');
   myDatestring = parts[parts.length -2]+" "+ parts[parts.length -3] +", "+parts[parts.length -1];
-  console.log(myDatestring);
   mydate = new Date(myDatestring);
   mydate.setDate(mydate.getDate()+z);
   return arrDay[mydate.getDay()];

@@ -75,8 +75,8 @@ function initialize(vLat, vLong, vZoom)
 
   var infowindow = new google.maps.InfoWindow();
   var marker, i;
-if(vDateIssued.includes("Today"))
-    vDateIssued = vDateIssued.replace("Today", "");
+// if(vDateIssued.includes("Today"))
+//     vDateIssued = vDateIssued.replace("Today", "");
 
   document.getElementById("issueddate").innerHTML = "<p>Date Issued: "+vDateIssued+"</p>";
   for(i=0; i<arrLocations.length; i++)
