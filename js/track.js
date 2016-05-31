@@ -4,6 +4,8 @@ var radarOverlay;
 var imageBounds = {north: 0, south: 0, east: 0, west: 0};
 var vImageURL;
 var arrCityName=[], arrIcon=[], arrMinTemp=[], arrMaxTemp=[];
+var initialposition, currentLat, currentLon;
+var marker;
 
 $(document).ready(function()
 {
@@ -15,9 +17,21 @@ $(document).ready(function()
       console.log("error in getting location");
     } else {
 
-      vLat = 12.330240; vLong = 122.231560;
+      //vLat = 12.330240; vLong = 122.231560;
+
+      console.log(vLat + ", " + vLong);
+      google.maps.event.addDomListener(window, 'load',initialize(vLat, vLong, 5));
       
-      google.maps.event.addDomListener(window, 'load',initialize(vLat, vLong, 7));
+	  navigator.geolocation.getCurrentPosition(function(position){
+	  	vLat=position.coords.latitude; currentLat=vLat;
+	  	vLong=position.coords.longitude; currentLon=vLong;
+	  	console.log(vLat + ", " + vLong);
+	  	initialposition = new google.maps.LatLng(vLat, vLong);
+	  	console.log("initial" + initialposition);
+	   	map.setCenter(initialposition);map.setZoom(5);
+      marker = new google.maps.Marker({position: new google.maps.LatLng(currentLat, currentLon), map:map});
+      marker.setMap(map);
+	  });
     }
 });
 
@@ -36,12 +50,13 @@ function initialize(vLat, vLong, vZoom)
       mapTypeControlOptions: {
             mapTypeIds: [google.maps.MapTypeId.ROADMAP, "map_style"]}*/
     };
-    var positionstring;
+  var positionstring;
   map = new google.maps.Map(document.getElementById("map-canvas"), mapOptions);
   map.mapTypes.set("map_style", mapReference);
   map.setMapTypeId("map_style");
 
-  var kmzLayer = new google.maps.KmlLayer('http://iligtas.ph/agaptest/track.kmz');
-    kmzLayer.setMap(map);
+  var kmzLayer = new google.maps.KmlLayer('http://m.weather.gov.ph/agaptest/track.kmz',{preserveViewport:true});
+  kmzLayer.setMap(map);
+
 
 }

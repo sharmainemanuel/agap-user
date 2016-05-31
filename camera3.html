@@ -192,7 +192,7 @@
 		        if(dataURL.length > 100){
 			        $.ajax({
 			          type: "POST",
-			          url: "http://m.weather.gov.ph/agapphp/addimage.php",
+			          url: "http://m.weather.gov.ph/agaptest/addimage.php",
 			          dataType: "JSON",
 			          data: {imgBase64: dataURL},
 			          success: function() {console.log('saved');}

@@ -8,6 +8,11 @@ body {
   opacity: 0.5;
     filter: Alpha(opacity=50);
 }
+/*
+user
+.user-menu {
+    display: bl;
+}*/
 .ui-page {
     background: transparent;
 }.ui-content {
