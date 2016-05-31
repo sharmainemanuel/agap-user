@@ -9,10 +9,10 @@ body {
     filter: Alpha(opacity=50);
 }
 /*
-user
+user/*/
 .user-menu {
-    display: bl;
-}*/
+    display: none;
+}
 .ui-page {
     background: transparent;
 }.ui-content {

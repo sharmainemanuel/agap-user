@@ -3,8 +3,8 @@
 <!-- config.xml reference: https://build.phonegap.com/docs/config-xml -->
 <widget xmlns     = "http://www.w3.org/ns/widgets"
         xmlns:gap = "http://phonegap.com/ns/1.0"
-        id        = "ph.gov.dost.pagasa-user.gc.css"
-        version   = "2.56">
+        id        = "ph.gov.dost.pagasa-user2.gc.css"
+        version   = "2.58">
 
     <name>PAGASA</name>
 
