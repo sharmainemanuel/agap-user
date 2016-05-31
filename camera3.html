@@ -187,6 +187,7 @@
 		    }
 
 	      	function sendImage(){
+				var capturedBy = localstorage.getItem('datausername');
 		        var dataURL = document.getElementById('smallImage').src;
 		        console.log(dataURL + " " + dataURL.length);
 		        if(dataURL.length > 100){
@@ -194,7 +195,7 @@
 			          type: "POST",
 			          url: "http://m.weather.gov.ph/agaptest/addimage.php",
 			          dataType: "JSON",
-			          data: {imgBase64: dataURL},
+			          data: {imgBase64: dataURL, capturedBy1: capturedBy  },
 			          success: function() {console.log('saved');}
 			    	}).done (new $.nd2Toast({message : "Image Sent"}));
 			   	} else {
