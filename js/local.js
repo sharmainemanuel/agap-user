@@ -34,7 +34,14 @@ $(document).ready(function()
           arrMaxTemp.push(myData.result.data[i+vc].max+"&degC");}
         }
       });
-      google.maps.event.addDomListener(window, 'load',initialize(vLat, vLong, 6));
+     	  if(vDateIssued == undefined)
+	  {
+		  
+		  errMsg();
+	  }
+	  else{
+	    google.maps.event.addDomListener(window, 'load',initialize(vLat, vLong, 6));	  
+	  }
     }
 });
 

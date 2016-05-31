@@ -26,7 +26,12 @@ $.ajax
 	 
 	 document.getElementById('gale-header').innerHTML = htmlData;
   }
-  
+  ,  error: function (request, textStatus, errorThrown) {
+
+		errMsg();	
+        console.log(textStatus);
+        console.log(errorThrown);
+    }
   
 });
 $.ajax
@@ -56,9 +61,14 @@ $.ajax
 	    htmlcontent+="</option>";}
 
 	$("#seaboardlist").append(htmlcontent);
-	//m.innerHTML = htmlcontent;
 	viewnow();
 	}
+	,  error: function (request, textStatus, errorThrown) {
+
+		errMsg();	
+        console.log(textStatus);
+        console.log(errorThrown);
+    }
 });
 });
 

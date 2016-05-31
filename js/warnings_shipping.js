@@ -9,7 +9,7 @@ $.ajax
 
   success: function (result2){
 	setTimeout(function(){
-		$('#imgLoader').fadeOut();
+		$('#imgLoader').fadeOut(); }, 1000);
 	localStorage.setItem("warning_category", result2.result[0].warning_category);
 	localStorage.setItem("warning_number", result2.result[0].warning_number);
 	localStorage.setItem("ty_type", result2.result[0].tc_type);
@@ -41,9 +41,11 @@ $.ajax
 		includes_radar = "NONE";
 
 	$( ".inner" ).append("<ul data-role=listview data-inset=false data-icon=false data-divider-theme=b class=ui-listview> <li class='ui-li-static ui-body-inherit ui-first-child'> <span>Warning Category:</span> "+warning_category+" </li> <li class='ui-li-static ui-body-inherit'> Warning Number: "+warning_number+" </li></li> <li class='ui-li-static ui-body-inherit'> Tropical Type: "+ty_type+" </li></li> <li class='ui-li-static ui-body-inherit'> Tropical International Name: "+int_tc_name+" </li></li> <li class='ui-li-static ui-body-inherit'> Tropical Number: "+tc_number+" </li></li> <li class='ui-li-static ui-body-inherit'> Includes Radar: "+includes_radar+" </li></li> <li class='ui-li-static ui-body-inherit'> Location(lot,lang): "+location_latlng+" </li></li> <li class='ui-li-static ui-body-inherit'> Forecast: "+fcst+" </li></li> <li class='ui-li-static ui-body-inherit'> Forecast Value: "+fcst_value+" </li></li> <li class='ui-li-static ui-body-inherit'> Sea Condition: "+sea_condition+" </li></li> <li class='ui-li-static ui-body-inherit'> Tropical Radius: "+tc_radius+" </li></li> <li class='ui-li-static ui-body-inherit'> Extent: "+extent+" </li></ul>");
- }, 1000);
+
 	},  error: function (request, textStatus, errorThrown) {
-        console.log(request.responseText);
+   	setTimeout(function(){
+		$('#imgLoader').fadeOut(); }, 1000);
+		errMsg();
         console.log(textStatus);
         console.log(errorThrown);
     }

@@ -9,7 +9,7 @@
 
   success: function (result2){
 	setTimeout(function(){
-		$('#imgLoader').fadeOut();
+		$('#imgLoader').fadeOut();	 }, 1000);
 		var test =result2.result[result2.result.length-1];
 		
  	var ty_name = test.ty_name;
@@ -21,10 +21,12 @@
  	//var issued_for = test.ty_lon;
  	var ty_reference = test.ty_reference;
 
-	$( ".inner" ).html("<p><span>Typhoon Name:<br> </span>"+ty_name+"</p><p><span>International Name:</span><br> "+intl_name+"</p><p><span>Issued :</span><br> "+ty_time+ " ,"+ty_date+"</p><p><span>Reference: <br> </span>" +ty_reference+"</p>");
-	 }, 1000);
+	$( ".inner" ).html("<p><strong>Typhoon Name:<br> </strong>"+ty_name+"</p><p><strong>International Name:</strong><br> "+intl_name+"</p><p><strong>Issued :</strong><br> "+ty_time+ " ,"+ty_date+"</p><p><strong>Reference: <br> </strong>" +ty_reference+"</p>");
+
 	},  error: function (request, textStatus, errorThrown) {
-        console.log(request.responseText);
+     errMsg();
+	 	setTimeout(function(){
+		$('#imgLoader').fadeOut();	 }, 1000);
         console.log(textStatus);
         console.log(errorThrown);
     }

@@ -42,6 +42,11 @@ $(document).ready(function(){viewnow()});
         document.getElementById("vrcdeviation").innerHTML = "<strong>Rule Curve Deviation: </strong>" + data[0].fldrulecurvedeviation;
         document.getElementById("verr").innerHTML = "<strong>Estimated RR: </strong>" + data[0].fldfswlrramount;
         document.getElementById("vgate").innerHTML = "<strong>Gate Opening (m): </strong>" + data[0].fldgateopening;
-      }
+      }	,  error: function (request, textStatus, errorThrown) {
+
+		errMsg();	
+        console.log(textStatus);
+        console.log(errorThrown);
+    }
     })
   })}

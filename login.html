@@ -118,17 +118,17 @@
 			
 					
 			//	$.getJSON("http://iligtas.ph/agap/mobile/login.php?callback=?", lform.serialize(),function(data)
-				$.getJSON("http://m.weather.gov.ph/agaptest//login.php?callback=?", lform.serialize(),function(data)
+			$.getJSON("http://m.weather.gov.ph/agaptest/login.php?callback=?", lform.serialize(),function(data)
 				{
 					if (data.verified == "v1")
 					{
-					localStorage.setItem("datausername", data.username);
+					localStorage.setItem("datausername", data.myName);
 					localStorage.setItem("dataemail", data.email);
 					localStorage.setItem("datapassword", data.password);
 		
 		
 		
-					$.mobile.changePage( "main2.html", { changeHash: true });
+					$.mobile.changePage( "main2.html#homepage", { changeHash: true });
 					}
 					else
 					{

@@ -62,9 +62,24 @@ $(document).ready(function()
           arrMin5.push(myData.result.data[i].day5.min);
           arrMax5.push(myData.result.data[i].day5.max);
           
-        }}
+        }},  error: function (request, textStatus, errorThrown) {
+       errMsg();
+        console.log(textStatus);
+        console.log(errorThrown);
+    }
+		
+		
+		
       });
-      google.maps.event.addDomListener(window, 'load',initialize(vLat, vLong, 6));
+	  if(vDateIssued == undefined)
+	  {
+		  
+		  errMsg();
+	  }
+	  else{
+	    google.maps.event.addDomListener(window, 'load',initialize(vLat, vLong, 6));	  
+	  }
+  
     }
 });
 

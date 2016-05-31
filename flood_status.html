@@ -19,7 +19,7 @@
 	<body >
 
 		<div data-role="page" id="flood_status">
-		<div data-role="panel" id="leftpanel" data-display="overlay" data-position-fixed="true" >
+			<div data-role="panel" id="leftpanel" data-display="overlay" data-position-fixed="true" >
 				<div class='nd2-sidepanel-profile wow fadeInDown'>
 					<img class='profile-background' src="bg.jpg" />
 					<div class="row">
@@ -38,6 +38,7 @@
 					</div>
 				</div>
 				<ul data-role="listview" data-inset="false"></ul>
+				<div data-role="collapsibleset">
 				<div data-role="collapsible" data-inset="false"  data-collapsed-icon="carat-d" data-expanded-icon="carat-d" data-iconpos="right">
 					<h3>General Weather</h3>
 					<ul data-role="listview" data-inset="false" data-icon="false">
@@ -74,10 +75,10 @@
 				<div data-role="collapsible" data-inset="false" data-collapsed-icon="carat-d" data-expanded-icon="carat-d" data-iconpos="right">
 							<h3>Tropical Cyclone Warnings</h3>
 							<ul data-role="listview" data-icon="false">
-									<li><a href="weatherbulletin.html" data-ajax='false'>Local Weather Bulletin</a></li>
+								<li><a href="weatherbulletin.html" data-ajax='false'>Local Weather Bulletin</a></li>
 								<li><a href="track.html" data-ajax='false'>Tropical Cyclone Track</a></li>
 								<li><a href="hourlyupdate.html"  data-ajax='false'> Hourly Update</a></li>
-								<li><a href="warnings_shipping.html"  data-ajax='false'>Int'l Weather Bulletin</a></li>
+							<li><a href="warnings_shipping.html"  data-ajax='false'>Int'l Weather Bulletin</a></li>
 								</ul>
 				</div>
 				<ul data-role="listview" data-inset="false"></ul>
@@ -98,8 +99,20 @@
 						<li><a href="podcast4.html#podcast" data-ajax='false'>Podcast</a></li>						
 					</ul>
 				</div>
-				
-	
+				<div class="user-menu">
+					<ul data-role="listview" data-inset="false"></ul>
+				<div data-role="collapsible" data-inset="false" data-collapsed-icon="carat-d" data-expanded-icon="carat-d" data-iconpos="right">
+					<h3>Real Time Weather</h3>
+					<ul data-role="listview" data-icon="false">
+						<li><a href="userlocation_cyclone.html" data-ajax='false'>User Location for Tropical Cyclone</a></li>						
+						<li><a href="userlocation_weather.html" data-ajax='false'>User Location for Weather</a></li>						
+						<li><a href="camera3.html" data-ajax='false'>Capture Image</a></li>						
+					
+					</ul>
+				</div>
+				</div>	
+
+			</div>
 			</div>
 				<div data-role="header" data-position="fixed" class="wow fadeIn">
 					<a href="#leftpanel" class="ui-btn ui-btn-left wow fadeIn" data-wow-delay='0.8s'><i class="zmdi zmdi-menu"></i></a>
@@ -172,6 +185,7 @@
 		<script src="js/tweecool.min.js"></script>
 		<script src="js/jquery.rss.js"></script>
 		<script src="js/moment.min.js"></script>
+		<script src="js/errMsg.js"></script>
 		<script src="js/floodstatus.js"></script>
 		<script src="js/internet.js"></script>
 	</body>

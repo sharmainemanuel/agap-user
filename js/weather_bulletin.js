@@ -22,14 +22,18 @@ $.ajax
 	 var issued_date = time_issued + "," +date_issued;
 		
 				
-				//use Typhoon Name as header (local and international name), inlcude Alert/Signal, time issued, option to view Map track
-				$(".inner").html("Issued Date: "+issued_date+" <br>Tropical Cyclone: " +tc_name +"("+int_tc_name+")<br><br>"+location_sentence+"");
+	$(".inner").html("Issued Date: "+issued_date+" <br>Tropical Cyclone: " +tc_name +"("+int_tc_name+")<br><br>"+location_sentence+"");
 			
 		}
 				
 			}
 
 	  });
-	}
+	},  error: function (request, textStatus, errorThrown) {
+			setTimeout(function(){$('#imgLoader').fadeOut(); }, 1000);	
+       errMsg();
+        console.log(textStatus);
+        console.log(errorThrown);
+    }
 });
 

@@ -63,7 +63,12 @@ $(document).ready(function()
         }
         google.maps.event.addDomListener(window, 'load',initialize(vLat, vLong, 6));
  }, 500);  
-      }
+      },
+	  error: function (request, textStatus, errorThrown) {
+        errMsg();
+        console.log(textStatus);
+        console.log(errorThrown);
+    }
       });
       
     }

@@ -68,6 +68,12 @@ function getData(){
 
 							
 				}	
+					,  error: function (request, textStatus, errorThrown) {
+
+		errMsg();	
+        console.log(textStatus);
+        console.log(errorThrown);
+    }
 			
 		
 

@@ -83,7 +83,6 @@ function timer_function(){
 var refresh=1000; // Refresh rate in milli seconds
 mytime=setTimeout('AjaxFunction();',refresh)
 }
-
 </script>    
 </head>
 
@@ -176,6 +175,21 @@ mytime=setTimeout('AjaxFunction();',refresh)
 						<li><a href="podcast4.html#podcast" data-ajax='false'>Podcast</a></li>						
 					</ul>
 				</div>
+				<div class="user-menu">
+					<ul data-role="listview" data-inset="false"></ul>
+				<div data-role="collapsible" data-inset="false" data-collapsed-icon="carat-d" data-expanded-icon="carat-d" data-iconpos="right">
+					<h3>Real Time Weather</h3>
+					<ul data-role="listview" data-icon="false">
+						<li><a href="userlocation_cyclone.html" data-ajax='false'>User Location for Tropical Cyclone</a></li>						
+						<li><a href="userlocation_weather.html" data-ajax='false'>User Location for Weather</a></li>						
+						<li><a href="camera3.html" data-ajax='false'>Capture Image</a></li>						
+					
+					</ul>
+				</div>
+				</div>	
+				<ul class="log" data-role="listview" data-inset="false"><a href="login.html" data-ajax='false'>LOGIN</a></ul>
+		
+				
 				
 	
 			</div>
@@ -189,7 +203,7 @@ mytime=setTimeout('AjaxFunction();',refresh)
 				</a>
 					<ul data-role="nd2tabs" data-swipe="true">
 						<li data-tab="friends" data-tab-active="true">Daily Forecast</li>
-						<li data-tab="work" >RSS</li>
+						<li data-tab="work" id="rss">RSS</li>
 						
 					</ul>
 			</div>
@@ -272,12 +286,13 @@ mytime=setTimeout('AjaxFunction();',refresh)
 		<script src="js/jquery.rss.js"></script>
 		<script src="js/moment.min.js"></script>
 		<script src="js/date.js"></script>
+		<script src="js/internet.js"></script>
+		<script src="js/errMsg.js"></script>
 
 
         <script type="text/javascript" src="js/PushwooshAndroid.js"></script>
         <script type="text/javascript" src="js/PushwooshiOS.js"></script>
-			<script type="text/javascript" src="js/PushwooshWP.js"></script>
-
+		<script type="text/javascript" src="js/PushwooshWP.js"></script>
         <script type="text/javascript" src="js/index.js"></script>
         
         <script type="text/javascript">
@@ -285,81 +300,21 @@ mytime=setTimeout('AjaxFunction();',refresh)
         </script>
 	
 		<script>
-			$(document).ready(function() {
-
-			function Logger(id) {	
-			  this.el = document.getElementById('log');
-			}
-			Logger.prototype.log = function(msg) {
-			  var fragment = document.createDocumentFragment();
-			  fragment.appendChild(document.createTextNode(msg));
-			  fragment.appendChild(document.createElement('br'));
-			  this.el.appendChild(fragment);
-			};
-
-			Logger.prototype.clear = function() {
-			  this.el.textContent = '';
-			};
-
-			var logger = new Logger('log');
-
-			function updateConnectionStatus(msg, connected) {
-			  var el = document.querySelector('#connection');
-			  if (connected) {
-			    if (el.classList) {
-			      el.classList.add('connected');
-			      el.classList.remove('disconnected');
-			    } else {
-			      el.addClass('connected');
-			      el.removeClass('disconnected');
-			    }
-			  } else {
-			    if (el.classList) {
-			      el.classList.remove('connected');
-			      el.classList.add('disconnected');
-			    } else {
-			      el.removeClass('connected');
-			      el.addClass('disconnected');
-			    }
-			  }
-			  el.innerHTML = msg + '<div></div>';
-			}
-
-			window.addEventListener('load', function(e) {
-			  if (navigator.onLine) {
-			    updateConnectionStatus('', true);
-			  } else {
-			// var  msg =  updateConnectionStatus('No Internet Connection', false);
-			  new $.nd2Toast({ 
-			   message : "No Internet Connection", // Required
-			   action : { // Optional (Defines the action button on the right)
-			     title : "Try Again", // Title of the action button
-			     fn : function() { // function that will be triggered when action clicked
-			        //console.log("Action Button clicked'");
-					location.href="main2.html";
-			     },
-			     color : "red" // optional color of the button (default: 'lime')
-			   },
-			   ttl : 8000 // optional, time-to-live in ms (default: 3000)
-			 });
-			  }
-			}, false);
-
-
-			$("#rss-feeds-date").rss("http://pagasa.dost.gov.ph/prsdcodes/rss/forecast/forecast.xml", {
-			dateFormat: 'MMM Do YY, h:mm a',
-			    entryTemplate: '{date}',
-				effect: 'slideFastSynced',
-			        }).show();
-
-			$("#rss-feeds").rss("http://pagasa.dost.gov.ph/prsdcodes/rss/forecast/forecast.xml", {
-			    entryTemplate: '{bodyPlain}',
-				effect: 'slideFastSynced',
-			        }).show();
-			});
+		function errMsg()	{
+		new $.nd2Toast({ 
+								   message : "Data not Available please try again later", // Required
+								   action : { // Optional (Defines the action button on the right)
+									 title : "Try Again", // Title of the action button
+									 fn : function() { // function that will be triggered when action clicked
+										//console.log("Action Button clicked'");
+										location.href="main2.html";
+									 },
+									 color : "red" // optional color of the button (default: 'lime')
+								   },
+								   ttl : 15000 // optional, time-to-live in ms (default: 3000)
+								 });
+		}
 		</script>
-
-
 		<script>
 			//checkStuff();
 				function checkStuff(){
@@ -371,20 +326,7 @@ mytime=setTimeout('AjaxFunction();',refresh)
 					console.log("Location is Enabled");
 				}
 				else{
-					//alert("Please turn on your LOCATION Services");
-					
-					new $.nd2Toast({ 
-						   message : "Please turn on LOCATION Services", // Required
-						   action : { // Optional (Defines the action button on the right)
-							 title : "Try Again", // Title of the action button
-							 fn : function() { // function that will be triggered when action clicked
-								//console.log("Action Button clicked'");
-								location.href="main2.html";
-							 },
-							 color : "red" // optional color of the button (default: 'lime')
-						   },
-						   ttl : 15000 // optional, time-to-live in ms (default: 3000)
-						 });
+				errMsg();
 				}
 				
 				
@@ -397,9 +339,6 @@ mytime=setTimeout('AjaxFunction();',refresh)
 	}
 	</script>
 	
-	
-	
-		
 		<script>
 
 	var geocoder, vlatlng, city, state, geocodingAPI;
@@ -516,11 +455,38 @@ function getData(){
 			setTimeout(function(){$('#imgLoader2').fadeOut();},500);}
 	}
 	   
-	}
+	},  error: function (request, textStatus, errorThrown) {
+        $("#showDailyHome").html("Data not Available please try again later");
+       setTimeout(function(){$('#imgLoader2').fadeOut();},500);
+    }
 	});
 }
 </script>
+<script>
+	$( "#rss" ).click(function() {
+		$.ajax({
+	type: "GET",
+	url: "http://m.weather.gov.ph/agaptest/main_local.php",
+	async: false,
+	success: function(myData){
+	console.log(myData);
+	var  issued_time = myData.result[4].time;
+	var  issued_date = myData.result[4].date;
+	var  forecast = myData.result[4].forecast;
+		$("#rss-feeds").html("Issued Date: "+issued_time+", "+issued_date+"</br>"+forecast);
+			//setTimeout(function(){$('#imgLoader2').fadeOut();},500);}
+	},  error: function (request, textStatus, errorThrown) {
 
+		errMsg();	
+        console.log(textStatus);
+        console.log(errorThrown);
+    }
+	
+	});
+	
+	
+	});
+	</script>
 </body>
 
 </html>

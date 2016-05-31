@@ -40,7 +40,12 @@ $(document).ready(function(){
 				orangeimpact.push(a.result[i][0].Orange_Impact);
 				redimpact.push(a.result[i][0].Red_Impact);
 			}
-		}
+		}	,  error: function (request, textStatus, errorThrown) {
+
+		errMsg();	
+        console.log(textStatus);
+        console.log(errorThrown);
+    }
 	});
 })
  	
