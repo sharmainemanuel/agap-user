@@ -311,7 +311,7 @@ mytime=setTimeout('AjaxFunction();',refresh)
 									 },
 									 color : "red" // optional color of the button (default: 'lime')
 								   },
-								   ttl : 15000 // optional, time-to-live in ms (default: 3000)
+								   ttl : 1000 // optional, time-to-live in ms (default: 3000)
 								 });
 		}
 		</script>
@@ -324,7 +324,7 @@ mytime=setTimeout('AjaxFunction();',refresh)
 				
 				if(enabled){
 					console.log("Location is Enabled");
-				}
+				
 				else{
 				errMsg();
 				}
@@ -368,17 +368,33 @@ mytime=setTimeout('AjaxFunction();',refresh)
     
     window.onload = function () {
 	timer_function();
-        if ( navigator.geolocation )
+	console.log(navigator.geolocation.getCurrentPosition(UserLocation)==undefined);
+        if ( !navigator.geolocation.getCurrentPosition(UserLocation)==undefined )
             navigator.geolocation.getCurrentPosition( UserLocation );
         else
-            NearestCity( 14.882156,120.2759178 );
+		{
+		  NearestCity(14.599598, 120.984797 );
+				new $.nd2Toast({ 
+								   message : "Please switch on your GPS/Location", // Required
+								   action : { // Optional (Defines the action button on the right)
+									 title : "Try Again", // Title of the action button
+									 fn : function() { // function that will be triggered when action clicked
+										//console.log("Action Button clicked'");
+										location.href="main2.html";
+									 },
+									 color : "red" // optional color of the button (default: 'lime')
+								   },
+								   ttl : 500 // optional, time-to-live in ms (default: 3000)
+								 });
+		}
+          
     }
 
     function UserLocation( position )
     {
         NearestCity( position.coords.latitude, position.coords.longitude );
     }
-
+	
     function Deg2Rad( deg ) {
        return deg * Math.PI / 180;
     }
@@ -443,14 +459,14 @@ function getData(){
 	async: false,
 	success: function(myData){
 	console.log(cities[closest][0]);
-   	for(var i = 0; i < myData.result.data.length -1; i++){
+   	for(var i = 0; i < myData.result.data.length; i++){
   
 		arrCityName.push(myData.result.data[i].cityName);
 		arrMin1.push(myData.result.data[i].day1.min);
 		arrMax1.push(myData.result.data[i].day1.max);
 		arrIcon1.push(myData.result.data[i].day1.logo);
 
-		if(arrCityName[i] == cities[closest][0]){
+		if(arrCityName[i].indexOf(cities[closest][0])>-1){
 			$("#showDailyHome").html("<br><span><br>Weather of city <br>	 nearest your location</span><div class='card-media'><img width='100%' src='img/weather_icons/"+ arrIcon1[i]  + ".png'></div><div class='card-title'><h3 class='card-primary-title'><strong>"+ arrCityName[i] +" <br>"+arrMin1[i] + "&#176;C | "+arrMax1[i] + "&#176;C </strong></h3<hr></div>");
 			setTimeout(function(){$('#imgLoader2').fadeOut();},500);}
 	}

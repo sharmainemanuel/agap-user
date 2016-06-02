@@ -141,7 +141,9 @@
 		 
 		 
 			<div role="main" class="ui-content wow fadeIn" data-inset="false" data-wow-delay="0.2s">
-			<div class="nd2-card wow fadeIn" id="tweecool" data-wow-delay="0.5s" ></div>
+			<div class="nd2-card wow fadeIn"  data-wow-delay="0.5s" >
+			<a class="twitter-timeline" href="https://twitter.com/dost_pagasa" data-chrome="noheader nofooter transparent" data-tweet-limit="5" data-widget-id="619751853463465985"></a>
+			</div>
 
 			
 			</div>
@@ -159,74 +161,9 @@
 		<script src="js/jquery.rss.js"></script>
 		<script src="js/moment.min.js"></script>
 		<script src="js/date.js"></script>
-		<script src="js/pagasa.js"></script>
+		<!--<script src="js/pagasa.js"></script>-->
 
-	
-	<script>
-$(document).ready(function() {
-
-
-	$('#tweecool').tweecool({
-		// Your twitter username
-		username : 'dost_pagasa',
-		// Number of tweets to show
-		limit : 5, 
-		// Show profile image
-		profile_image : true, 
-		// Show tweet time
-		show_time : true, 
-		// Show media
-		show_media : true,
-		//values: small, large, thumb, medium 
-		show_media_size: 'thumb'
-	});
-
-	$.mobile.loading("hide");
-	});
-
-	$("#rss-feeds-date").rss("https://kidlat.pagasa.dost.gov.ph/prsdcodes/rss/forecast/forecast.xml", {
-	dateFormat: 'MMM Do YY, h:mm a',
-	    entryTemplate: '{date}',
-		effect: 'slideFastSynced',
-	        }).show();
-
-	$("#rss-feeds").rss("https://kidlat.pagasa.dost.gov.ph/prsdcodes/rss/forecast/forecast.xml", {
-	    entryTemplate: '{bodyPlain}',
-		effect: 'slideFastSynced',
-	        }).show();
-	</script>
-
-	<script>
-	tday=new Array("Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday");
-	tmonth=new Array("January","February","March","April","May","June","July","August","September","October","November","December");
-
-	function GetClock(){
-	var d=new Date();
-	var nday=d.getDay(),nmonth=d.getMonth(),ndate=d.getDate(),nyear=d.getYear();
-	if(nyear<1000) nyear+=1900;
-	var nhour=d.getHours(),nmin=d.getMinutes(),nsec=d.getSeconds(),ap;
-
-	if(nhour==0){ap=" AM";nhour=12;}
-	else if(nhour<12){ap=" AM";}
-	else if(nhour==12){ap=" PM";}
-	else if(nhour>12){ap=" PM";nhour-=12;}
-
-	if(nmin<=9) nmin="0"+nmin;
-	if(nsec<=9) nsec="0"+nsec;
-
-	
-
-	document.getElementById('clockbox').innerHTML="<div class='card-media'><img src='img/clock.png' /></div>"+"<div class='card-title has-supporting-text'><span>PHILIPPINE STANDARD TIME</span><h3 class='card-primary-title'>"+nhour+":"+nmin+":"+nsec+ap+"</h3>"+tday[nday]+", "+tmonth[nmonth]+" "+ndate+", "+nyear+"</div>";
-	}
-
-	window.onload=function(){
-	GetClock();
-	setInterval(GetClock,1000);
-	}
-
-
-	</script>
-
+	<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
 
 
 	</body>
