@@ -75,7 +75,6 @@
         <gap:plugin name="com.phonegap.plugins.barcodescanner" />
     -->
 	<!-- Pushwoosh plugin -->
-	
     <gap:plugin name="pushwoosh-pgb-plugin" source="npm" />
 	<gap:plugin name="nl.x-services.plugins.socialsharing" />
 
@@ -124,8 +123,6 @@
     -->
 
     <access origin="*"/>
-	<access origin="*"/> <!-- allow all pages, use for development -->
-<access origin="*.pushwoosh.com"/> <!-- allow pushwoosh service -->
     <!-- Added the following intents to support the removal of whitelist code from base cordova to a plugin -->
     <!-- Whitelist configuration. Refer to https://cordova.apache.org/docs/en/edge/guide_appdev_whitelist_index.md.html -->
 	
