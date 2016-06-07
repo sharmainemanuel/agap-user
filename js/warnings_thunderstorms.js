@@ -42,14 +42,14 @@ function getData(){
 				}
 				if( Advisory2  !=  undefined ){
 			
-					MyAdvisoryII = "<br><strong>Advisory II:</strong>"+Advisory2+"<br>";
+					MyAdvisoryII = "<br><strong></strong>"+Advisory2+"<br>";
 				}
 				else{
 					MyAdvisoryII =  "";	
 				}	
 				if( Advisory3  !=  undefined ){
 		
-					MyAdvisoryIII = "<br><strong>Advisory III:</strong>"+Advisory3+"<br>";
+					MyAdvisoryIII = "<br><strong></strong>"+Advisory3+"<br>";
 				}
 				else{
 					MyAdvisoryIII =  "";	
@@ -60,7 +60,7 @@ function getData(){
 				var myyear = result2.result[divisionResult].Year;
 				var issued_at = mytime + " " +myday+" " +mymonth+ " " +myyear;
 				
-				document.getElementById('inner').innerHTML = "<p><strong><center>"+watch+"</center></strong></p><br><center>"+watchImg+"</center><br><strong>Issued at :</strong>"+issued_at+ "<br><br>"+"<strong>Advisory I :</strong>"+Advisory +"	<br>"+MyAdvisoryII+MyAdvisoryIII;
+				document.getElementById('inner').innerHTML = "<p><strong><center>"+watch+"</center></strong></p><br><center>"+watchImg+"</center><br><strong>Issued at :</strong>"+issued_at+ "<br><br>"+"<strong></strong>"+Advisory +"	<br>"+MyAdvisoryII+MyAdvisoryIII;
 		
 			}
 		}

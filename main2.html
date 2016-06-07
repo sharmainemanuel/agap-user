@@ -202,8 +202,8 @@ mytime=setTimeout('AjaxFunction();',refresh)
 								<i class='zmdi zmdi-share'></i>
 				</a>
 					<ul data-role="nd2tabs" data-swipe="true">
-						<li data-tab="friends" data-tab-active="true">Daily Forecast</li>
-						<li data-tab="work" id="rss">RSS</li>
+						<li data-tab="friends" data-tab-active="true">Current Weather</li>
+						<li data-tab="work" id="rss">Daily Forecast</li>
 						
 					</ul>
 			</div>
@@ -302,7 +302,7 @@ mytime=setTimeout('AjaxFunction();',refresh)
 		<script>
 		function errMsg()	{
 		new $.nd2Toast({ 
-								   message : "Data not Available please try again later", // Required
+								   message : "Data not Available ", // Required
 								   action : { // Optional (Defines the action button on the right)
 									 title : "Try Again", // Title of the action button
 									 fn : function() { // function that will be triggered when action clicked

@@ -31,14 +31,18 @@
   </script>
   <script>
   
+  
+  
   function init() {
+  
+  
     document.addEventListener("deviceready", initPushwoosh, true);
  
     //rest of the code
 }
   function initPushwoosh()
 {
-    var pushNotification = cordova.require("com.pushwoosh.plugins.pushwoosh.PushNotification");
+    var pushNotification = cordova.require("pushwoosh-cordova-plugin.PushNotification");
  
     //set push notifications handler
     document.addEventListener('push-notification', function(event) {

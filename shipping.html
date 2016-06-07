@@ -115,14 +115,44 @@
 
 			</div>
 			</div>
-				<div data-role="header" data-position="fixed" class="wow fadeIn">
+					<div data-role="header" data-position="fixed" class="wow fadeIn">
 					<a href="#leftpanel" class="ui-btn ui-btn-left wow fadeIn" data-wow-delay='0.8s'><i class="zmdi zmdi-menu"></i></a>
 					<h1 class="wow fadeIn" data-wow-delay='0.4s'>Shipping</h1>
-						<a   href="#sharePopupDialog" class="ui-btn ui-btn-right wow fadeIn" data-wow-delay='0.8s' data-rel="popup" data-position-to="window" data-transition="pop">
+
+				<a   href="#sharePopupDialog" class="ui-btn ui-btn-right wow fadeIn" data-wow-delay='0.8s' data-rel="popup" data-position-to="window" data-transition="pop">
 								<i class='zmdi zmdi-share'></i>
 				</a>
+					<ul data-role="nd2tabs" data-swipe="true">
+						<li data-tab="friends" data-tab-active="true">Forecast</li>
+						<li data-tab="work" id="rss">Zone</li>
+						
+					</ul>
 			</div>
+
 			<div role="main" class="ui-content" data-inset="false">
+		
+		<div data-role="nd2tab" data-tab="friends" data-swipe="true">	
+			
+<img id="imgLoader" src="img/ballRing.gif." class="loading" style="margin-left:50%;">
+					<div class="nd2-card nd3-card">
+						<div class="card-media">
+							<div class="inner" style="style='text-align:justify;">	</div>
+						</div>
+					</div>
+			
+			</div>
+			
+			<div data-role="nd2tab" data-tab="work" data-swipe="true">
+				<div class="nd2-card">
+					<div class="card-media image-container">
+						<img class="shippingimg" src="img/philippine_shipping_zones.gif">
+					</div>
+				</div> 
+			</div>
+			
+			</div>
+			
+		
 		
 		<div data-role="popup" id="sharePopupDialog">
                 <div data-role="header">
@@ -136,12 +166,7 @@
 
                 </div>
          </div>
-			<img id="imgLoader" src="img/ballRing.gif." class="loading" style="margin-left:50%;">
-					<div class="nd2-card nd3-card">
-						<div class="card-media">
-							<div class="inner" style="style='text-align:justify;">	</div>
-						</div>
-					</div>
+			
 			<pre id="log"></pre>
 					<pre class="classList"></pre>
 			</div> 
@@ -162,5 +187,65 @@
 		<script src="js/internet.js"></script>
 		<script src="js/errMsg.js"></script>
 		<script src="js/shipping.js"></script>
+		<script>
+			<script>
+			$(document).ready(function() {
+
+				//$('.satelliteimage').attr('src', 'https://pubfiles.pagasa.dost.gov.ph/tamss/weather/surface_map.jpg'); });
+//$('.shippingimg').attr('src', 'img/philippine_shipping_zones.gif'); });
+
+ 				$panzoom = $(".shippingimg").panzoom();
+ 				  $('.shippingimg').load(function(){
+        //Get container and image
+        var image = $('.shippingimg');
+        var container = $('.image-container');
+
+        //Get container dimensions
+        var container_height = container.height();
+        var container_width = container.width();
+
+        //Get image dimensions
+        var image_height = image.height();
+        var image_width = image.width();
+
+        //Calculate the center of image since origin is at x:50% y:50%
+        var image_center_left = image_width / 2.0;
+        var image_center_top = image_height / 2.0;
+
+        //Calculate scaling factor
+        var zoom_factor;
+
+        //Check to determine whether to stretch along width or heigh
+        if(image_height > image_width)
+            zoom_factor = container_height / image_height;
+        else
+            zoom_factor = container_width / image_width;
+
+        //Zoom by zoom_factor
+        $panzoom.panzoom("zoom", zoom_factor, {animate: false});
+
+        //Calculate new image dimensions after zoom
+        image_width = image_width * zoom_factor;
+        image_height = image_height * zoom_factor;
+
+        //Calculate offset of the image after zoom
+        var image_offset_left = image_center_left - (image_width / 2.0);
+        var image_offset_top = image_center_top - (image_height / 2.0);
+
+        //Calculate desired offset for image
+        var new_offset_left = (container_width - image_width) / 2.0;
+        var new_offset_top = (container_height - image_height) / 2.0;
+
+        //Pan to set desired offset for image
+        var pan_left = new_offset_left - image_offset_left;
+        var pan_top = new_offset_top - image_offset_top;
+        $panzoom.panzoom("pan", pan_left, pan_top);
+
+    });
+	
+</script>
+
+
+		</script>
 	</body>
 </html>
