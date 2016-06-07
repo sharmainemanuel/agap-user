@@ -31,8 +31,7 @@
   </script>
   <script>
   
-  
-  
+
   function init() {
   
   
@@ -40,6 +39,8 @@
  
     //rest of the code
 }
+
+
   function initPushwoosh()
 {
     var pushNotification = cordova.require("pushwoosh-cordova-plugin.PushNotification");
@@ -59,6 +60,7 @@
     //initialize Pushwoosh with projectid: "GOOGLE_PROJECT_ID", pw_appid : "PUSHWOOSH_APP_ID". This will trigger all pending push notifications on start.
     pushNotification.onDeviceReady({ projectid: "auspicious-crow-95806", pw_appid : "6F454-5923E" });
  
+ 
     //register for pushes
     pushNotification.registerDevice(
         function(status) {
@@ -71,6 +73,8 @@
     );
 }
   
+  
+
   
   </script>
   
