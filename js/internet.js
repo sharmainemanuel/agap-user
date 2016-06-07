@@ -2,7 +2,7 @@ $(document).ready(function() {
 
 function errMsg()	{
 new $.nd2Toast({ 
-						   message : "Data not Available please try again later", // Required
+						   message : "Data not Available ", // Required
 						   action : { // Optional (Defines the action button on the right)
 							 title : "Try Again", // Title of the action button
 							 fn : function() { // function that will be triggered when action clicked
