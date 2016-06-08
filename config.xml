@@ -3,10 +3,8 @@
 <!-- config.xml reference: https://build.phonegap.com/docs/config-xml -->
 <widget xmlns     = "http://www.w3.org/ns/widgets"
         xmlns:gap = "http://phonegap.com/ns/1.0"
-        id        = "ph.gov.dost.pagasa-user2.gc.css"
-        version   = "2.59">
-		
-		<!--latest build JUNE 2, 2016 all are working -->
+        id        = "ph.gov.dost.pagasa-user.gc.ccs"
+        version   = "2.60">
 
     <name>PAGASA</name>
 
@@ -76,7 +74,6 @@
     -->
 	<!-- Pushwoosh plugin -->
     <gap:plugin name="pushwoosh-pgb-plugin" source="npm" />
-	<gap:plugin name="nl.x-services.plugins.socialsharing" />
 
     <!-- Define app icon for each platform. -->
 	
@@ -133,9 +130,8 @@
 <access origin="http://api.meteopilipinas.gov.ph/v1/raingauge" />
 <access origin="http://api.meteopilipinas.gov.ph/v1/fast/asian" />
 <access origin="http://api.meteopilipinas.gov.ph/v1/fast/outlook" />
-
 <allow-navigation href="http://*/*" />
-	<plugin name="cordova-plugin-whitelist" source="npm" spec="1.1.0" />
+    <plugin name="cordova-plugin-whitelist" version="1" />
     <allow-intent href="http://*/*" />
     <allow-intent href="https://*/*" />
     <allow-intent href="tel:*" />

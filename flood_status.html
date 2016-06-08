@@ -119,10 +119,11 @@
 					<h1 class="wow fadeIn" data-wow-delay='0.4s'>Dam Status</h1>
 			 	<a   href="#sharePopupDialog" class="ui-btn ui-btn-right wow fadeIn" data-wow-delay='0.8s' data-rel="popup" data-position-to="window" data-transition="pop">
 								<i class='zmdi zmdi-share'></i>
+								
 				</a>
-				
 				</div>		
-	<div data-role="popup" id="sharePopupDialog">
+				
+				<div data-role="popup" id="sharePopupDialog">
                 <div data-role="header">
                 	<h1 class='nd-title'><i class='zmdi zmdi-share'></i>&nbsp;SHARE</h1>
             	</div>
@@ -133,6 +134,7 @@
                     <a href="dialog/index.html" data-rel="back" data-role="button" data-inline="true" class="ui-btn ui-btn-primary"><i class='zmdi zmdi-cancel'></i> Cancel</a>
 
                 </div>
+				
          </div>
 		 
 		 
@@ -166,12 +168,34 @@
 							<p id="verr"><strong></p>
 							<p id="vgate"><strong></p>
 						</div>
+						
 					</div>
+					
+					
 				</div> 
+				<div style="text-align: right"><a href="#radarpopup"  style="text-decoration: none !important" data-rel="popup" data-position-to="window" data-wow-delay='0.8s'>Legend</a></div>
 			</div> 
+		
+		<div data-role="popup" id="radarpopup">
+			<div data-role="header">
+				<h1 class="nd-title">Legend</h1>
+			</div>
+
+			<div data-role="content">
+				<p><strong>NHWL</strong>- Normal High Water Level</p>
+				<p><strong>FHWL</strong>- Flood High Water Level</p><br>
+				<p>+ Deviation indicates increase from previous Water Level</p>
+				<p>- Deviation indicates decrease from previous Water Level</p>
+				
+				
+			</div>
+			
 		</div>
-			<pre id="log"></pre>
-			<pre class="classList"></pre>
+			
+		</div>
+		
+		<pre id="log"></pre>
+		<pre class="classList"></pre>
 
 		<script src="cordova.js"></script>
 		<script src="telephonenumber.js"></script>

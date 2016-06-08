@@ -14,33 +14,35 @@ $.ajax
 					  	for(j=0; j<=result2.result.length; j++){
 				  var tc_name = result2.result[0].tc_name;
 	  var int_tc_name = result2.result[0].int_tc_name;
-	  var warning_or_alert = result2.result[0].warning_or_alert;
-	  var movement = result2.result[0].movement;
+	  	  var movement = result2.result[0].movement;
 	  var maxwind = result2.result[0].maxwind;
-	  var fposition = result2.result[0].fposition;
+	  var warning_or_alert = result2.result[0].warning_or_alert;
+	  	  var fposition = result2.result[0].fposition;
 	  var signaloneL = result2.result[0].signaloneL;
 	  var signaloneV = result2.result[0].signaloneV;
 	  var signaloneM = result2.result[0].signaloneM;
 	  var signaltwoL = result2.result[0].signaltwoL;
-	  var fposition = result2.result[0].signaltwoV;
-	  var fposition = result2.result[0].signaltwoM;
-	  var fposition = result2.result[0].signalthreeL;
-	  var fposition = result2.result[0].signalthreeV;
-	  var fposition = result2.result[0].signalthreeM;
-	  var fposition = result2.result[0].signalfourL;
-	  var fposition = result2.result[0].signalfourV;
-	  var fposition = result2.result[0].signalfourM;
-	  var fposition = result2.result[0].signalfiveL;
-	  var fposition = result2.result[0].signalfiveV;
-	  var fposition = result2.result[0].signalfiveM;
+	  var signaltwoV = result2.result[0].signaltwoV;
+	  var signaltwoM = result2.result[0].signaltwoM;
+	  var signalthreeL = result2.result[0].signalthreeL;
+	  var signalthreeV = result2.result[0].signalthreeV;
+	  var signalthreeM = result2.result[0].signalthreeM;
+	  var signalfourL = result2.result[0].signalfourL;
+	  var signalfourV = result2.result[0].signalfourV;
+	  var signalfourM = result2.result[0].signalfourM;
+	  var signalfiveL = result2.result[0].signalfiveL;
+	  var signalfiveV = result2.result[0].signalfiveV;
+	  var signalfiveM = result2.result[0].signalfiveM;
 	  
+	 var time_issued = result2.result[0].bulletin_number;
 	 var time_issued = result2.result[0].time_issued;
 	 var date_issued = result2.result[0].date_issued;
 	 var location_sentence = result2.result[0].location_sentence;
 	 var issued_date = time_issued + "," +date_issued;
 		
 				
-	$(".inner").html("Issued Date: "+issued_date+" <br>For: " +tc_name +"("+int_tc_name+")<br>"+warning_or_alert+"<br><br>"+issued_date+""+location_sentence+"");
+	//$(".inner").html("Issued Date: "+issued_date+" <br>Tropical Cyclone: " +tc_name +"("+int_tc_name+")<br><br>"+location_sentence+"");
+	$(".inner").html("Issued Date: "+issued_date+" <br>Tropical Cyclone: " +tc_name +"("+int_tc_name+")<br><br>"+location_sentence+"");
 			
 		}
 				

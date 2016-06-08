@@ -35,7 +35,7 @@
 	</head>
 	<body >
 		<div data-role="page" id="satellite">
-			<div data-role="panel" id="leftpanel" data-display="overlay" data-position-fixed="true" >
+		<div data-role="panel" id="leftpanel" data-display="overlay" data-position-fixed="true" >
 				<div class='nd2-sidepanel-profile wow fadeInDown'>
 					<img class='profile-background' src="bg.jpg" />
 					<div class="row">
@@ -54,7 +54,6 @@
 					</div>
 				</div>
 				<ul data-role="listview" data-inset="false"></ul>
-				<div data-role="collapsibleset">
 				<div data-role="collapsible" data-inset="false"  data-collapsed-icon="carat-d" data-expanded-icon="carat-d" data-iconpos="right">
 					<h3>General Weather</h3>
 					<ul data-role="listview" data-inset="false" data-icon="false">
@@ -94,7 +93,7 @@
 								<li><a href="weatherbulletin.html" data-ajax='false'>Local Weather Bulletin</a></li>
 								<li><a href="track.html" data-ajax='false'>Tropical Cyclone Track</a></li>
 								<li><a href="hourlyupdate.html"  data-ajax='false'> Hourly Update</a></li>
-							<li><a href="warnings_shipping.html"  data-ajax='false'>Int'l Weather Bulletin</a></li>
+								<li><a href="warnings_shipping.html"  data-ajax='false'>Int'l Weather Bulletin</a></li>
 								</ul>
 				</div>
 				<ul data-role="listview" data-inset="false"></ul>
@@ -110,25 +109,13 @@
 				<div data-role="collapsible" data-inset="false" data-collapsed-icon="carat-d" data-expanded-icon="carat-d" data-iconpos="right">
 					<h3>Social</h3>
 					<ul data-role="listview" data-icon="false">
-						<li><a href="facebook.html" data-ajax='false'>Facebook</a></li>	
+						<li><a href="facebook.html" data-ajax='false'>Facebook</a></li>				
 						<li><a href="twitter.html#twitter" data-ajax='false'>Twitter</a></li>				
 						<li><a href="podcast4.html#podcast" data-ajax='false'>Podcast</a></li>						
 					</ul>
 				</div>
-				<div class="user-menu">
-					<ul data-role="listview" data-inset="false"></ul>
-				<div data-role="collapsible" data-inset="false" data-collapsed-icon="carat-d" data-expanded-icon="carat-d" data-iconpos="right">
-					<h3>Real Time Weather</h3>
-					<ul data-role="listview" data-icon="false">
-						<li><a href="userlocation_cyclone.html" data-ajax='false'>User Location for Tropical Cyclone</a></li>						
-						<li><a href="userlocation_weather.html" data-ajax='false'>User Location for Weather</a></li>						
-						<li><a href="camera3.html" data-ajax='false'>Capture Image</a></li>						
-					
-					</ul>
-				</div>
-				</div>	
-
-			</div>
+				
+	
 			</div>
 				<div data-role="header" data-position="fixed" class="wow fadeIn">
 					<a href="#leftpanel" class="ui-btn ui-btn-left wow fadeIn" data-wow-delay='0.8s'><i class="zmdi zmdi-menu"></i></a>
@@ -155,20 +142,26 @@
 
 			<div role="main" class="ui-content" data-inset="false">
 				<div class="nd2-card card-media-small">
+				<select name="sat" id="satlist" onchange="satChange(document.getElementById('satlist').value)">
+					<!-- <option selected hidden>[Select a Satellite Type]</option> -->
+					<option value=1 selected>Himawari-ir</option>
+					<option value=2>Himawari-Vis</option>
+					<option value=3>F2YE-IR</option>
+					<!-- <option value=3>F2YE-Vis</option> -->
+				</select></div>
+
+				<div class="nd2-card card-media-small satir"  style="display: block">
 					<div class="card-media">
-						<p><strong>HIMAWARI IR</strong></p>
 						<img class="satelliteimageir" src="">
 					</div>
 				</div> 
-				<div class="nd2-card card-media-small">
+				<div class="nd2-card card-media-small satvis" style="display: none">
 					<div class="card-media">
-						<p><strong>HIMAWARI VIS</strong></p>
 						<img class="satelliteimagevis" src="">
 					</div>
 				</div>
-				<div class="nd2-card card-media-small">
+				<div class="nd2-card card-media-small satf2ye"  style="display: none">
 					<div class="card-media">
-						<p><strong>F2YE</strong></p>
 						<img class="satelliteimagef2ye" src="">
 					</div>
 				</div>
@@ -195,6 +188,25 @@
 			$('.satelliteimagevis').attr('src', 'http://121.58.193.148/repo/himawari/24hour/visbig/latestHIM_visbig.gif');
 			$('.satelliteimagef2ye').attr('src', 'http://121.58.193.148/repo/fy2e-ir/24hour/latest_CROPfy.gif');
 		});
+
+		function satChange(myVal){
+				console.log(myVal)
+				if (myVal == 1) {
+					$('.satir').attr('style', 'display:block'); 
+					$('.satvis').attr('style', 'display:none'); 
+					$('.satf2ye').attr('style', 'display:none'); 
+				}
+				if (myVal == 2) {
+					$('.satir').attr('style', 'display:none'); 
+					$('.satvis').attr('style', 'display:block'); 
+					$('.satf2ye').attr('style', 'display:none'); 
+				}
+				if (myVal == 3) {
+					$('.satir').attr('style', 'display:none'); 
+					$('.satvis').attr('style', 'display:none'); 
+					$('.satf2ye').attr('style', 'display:block'); 
+				}
+			}
 		</script>
 
 

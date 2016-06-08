@@ -29,7 +29,7 @@ $(document).ready(function()
 	  	initialposition = new google.maps.LatLng(vLat, vLong);
 	  	console.log("initial" + initialposition);
 	   	map.setCenter(initialposition);map.setZoom(5);
-      marker = new google.maps.Marker({position: new google.maps.LatLng(currentLat, currentLon), map:map});
+      marker = new google.maps.Marker({position: new google.maps.LatLng(currentLat, currentLon), map:map, icon:"img/man.png"});
       marker.setMap(map);
 	  });
     }
