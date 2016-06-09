@@ -29,49 +29,7 @@
     }
     }, 1000);
   </script>
-  <script>
-  
-  function init() {
-    document.addEventListener("deviceready", initPushwoosh, true);
- 
-    //rest of the code
-}
-  function initPushwoosh()
-{
-    // var pushNotification = cordova.require("com.pushwoosh.plugins.pushwoosh.PushNotification");
 
-    var pushNotification = cordova.require("pushwoosh-cordova-plugin.PushNotification");
- 
-    //set push notifications handler
-    document.addEventListener('push-notification', function(event) {
-        var title = event.notification.title;
-        var userData = event.notification.userdata;
-                                 
-        if(typeof(userData) != "undefined") {
-            console.warn('user data: ' + JSON.stringify(userData));
-        }
-                                     
-        alert(title);
-    });
- 
-    //initialize Pushwoosh with projectid: "GOOGLE_PROJECT_ID", pw_appid : "PUSHWOOSH_APP_ID". This will trigger all pending push notifications on start.
-    pushNotification.onDeviceReady({ projectid: "auspicious-crow-95806", pw_appid : "6F454-5923E" });
- 
-    //register for pushes
-    pushNotification.registerDevice(
-        function(status) {
-            var pushToken = status;
-            console.warn('push token: ' + pushToken);
-        },
-        function(status) {
-            console.warn(JSON.stringify(['failed to register ', status]));
-        }
-    );
-}
-  
-  
-  </script>
-  
    <title>PAGASA</title>
    
   <style>
@@ -95,7 +53,7 @@
   </style>
 </head>
   
-  <body onload="init();" >
+  <body >
   <div data-role="page" id="indexPage" data-theme="a">
   <div data-role="content" >
     
