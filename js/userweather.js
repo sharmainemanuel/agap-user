@@ -113,7 +113,7 @@ function initialize(vLat, vLong, vZoom)
   var infowindow = new google.maps.InfoWindow();
   var marker, i;
 
-  marker = new google.maps.Marker({position: new google.maps.LatLng(currentLat, currentLon), map:map});
+  marker = new google.maps.Marker({position: new google.maps.LatLng(currentLat, currentLon), map:map,icon:'img/man.png'});
   for(i=0; i<arrLocations.length; i++)
   {
     marker = new google.maps.Marker({
