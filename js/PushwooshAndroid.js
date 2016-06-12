@@ -19,7 +19,7 @@
 
 function registerPushwooshAndroid() {
 
- 	var pushNotification = cordova.require("com.pushwoosh.plugins.pushwoosh.PushNotification");
+ 	var pushNotification = cordova.require("pushwoosh-cordova-plugin.PushNotification");
 
 	//set push notifications handler
 	document.addEventListener('push-notification',
@@ -35,23 +35,21 @@ function registerPushwooshAndroid() {
 
 			//and show alert
 			alert(title);
-			console.log(title);
+
 			//stopping geopushes
 			//pushNotification.stopGeoPushes();
 		}
 	);
 
 	//initialize Pushwoosh with projectid: "GOOGLE_PROJECT_ID", appid : "PUSHWOOSH_APP_ID". This will trigger all pending push notifications on start.
-	//pushNotification.onDeviceReady({ projectid: "720897073177", appid : "6F454-5923E" });
-	  pushNotification.onDeviceReady({ projectid: "183997037267", appid : "36C52-0C80E" });
+	pushNotification.onDeviceReady({ projectid: "183997037267 ", pw_appid : "38458-7561C" });
 
 	//register for push notifications
 	pushNotification.registerDevice(
 		function(token)
 		{
-			//alert(token);
-			//callback when pushwoosh is ready
 			console.log(token);
+			//callback when pushwoosh is ready
 			onPushwooshAndroidInitialized(token);
 		},
 		function(status)
@@ -67,7 +65,7 @@ function onPushwooshAndroidInitialized(pushToken)
 	//output the token to the console
 	console.warn('push token: ' + pushToken);
 
-	var pushNotification = cordova.require("com.pushwoosh.plugins.pushwoosh.PushNotification");
+	var pushNotification = cordova.require("pushwoosh-cordova-plugin.PushNotification");
 	
 	//if you need push token at a later time you can always get it from Pushwoosh plugin
 	pushNotification.getPushToken(

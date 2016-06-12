@@ -136,7 +136,7 @@ img{width:32.2%;}
 				</div>
 				<ul data-role="listview" data-inset="false"></ul>
 				<div data-role="collapsible" data-inset="false" data-collapsed-icon="carat-d" data-expanded-icon="carat-d" data-iconpos="right">
-					<h3>Radar and Satellite</h3>
+					<h3>Weather Forecast Images</h3>
 					<ul data-role="listview" data-icon="false">
 						<li><a href="weathermap.html#weathermap" data-ajax='false'>Weather Map</a></li>
 						<li><a href="satellite.html#satellite" data-ajax='false'>Satellite</a></li>
@@ -190,13 +190,79 @@ img{width:32.2%;}
 		 
 		 
 
-			<div role="main" class="ui-content" data-inset="false">
+		<div role="main" class="ui-content" data-inset="false">
 	
 				<div class="nd2-card">
 					<div class="card-media image-container">
 						<img class="satelliteimage" src="">
 					</div>
+					
 				</div> 
+				
+				<div class="nd2-card">
+				<div class="card-media">
+					<table style="width: 100%">
+					<tr>
+						<td colspan="3" style="padding: 10px 0 10px 10px"><strong>LEGEND:</strong></td>
+						</tr>
+
+						<tr>
+						<td style="width:5%"></td>
+						<td style="width:10%"><img src="img/legends/hpa.png" style="width:75%" alt=""></td>
+						<td style="width:80%"><strong>&nbsp;-&nbsp;High Pressure Area</strong></td>
+						</tr>
+
+						<tr>
+						<td style="width:5%"></td>
+						<td style="width:10%"><img src="img/legends/lpa.png" style="width:75%" alt=""></td>
+						<td style="width:80%"><strong>&nbsp;-&nbsp;Low Pressure Area</strong></td>
+						</tr>
+
+						<tr>
+						<td style="width:5%"></td>
+						<td style="width:10%"><img src="img/legends/cold.png" alt=""></td>
+						<td style="width:80%"><strong>&nbsp;-&nbsp;Cold Front</strong></td>
+						</tr>
+
+						<tr>
+						<td style="width:5%"></td>
+						<td style="width:10%"><img src="img/legends/warm.png" alt=""></td>
+						<td style="width:80%"><strong>&nbsp;-&nbsp;Warm Front</strong></td>
+						</tr>
+
+						<tr>
+						<td style="width:5%"></td>
+						<td style="width:10%"><img src="img/legends/stationary.png" alt=""></td>
+						<td style="width:80%"><strong>&nbsp;-&nbsp;Stationary Front</strong></td>
+						</tr>
+
+						<tr>
+						<td style="width:5%"></td>
+						<td style="width:10%"><img src="img/legends/occluded.png" alt=""></td>
+						<td style="width:80%"><strong>&nbsp;-&nbsp;Occluded Front</strong></td>
+						</tr>
+
+						<tr>
+						<td style="width:5%"></td>
+						<td style="width:10%"><img src="img/legends/isobaric.png" alt=""></td>
+						<td style="width:80%"><strong>&nbsp;-&nbsp;Isobaric</strong></td>
+						</tr>
+
+						<tr>
+						<td style="width:5%"></td>
+						<td style="width:10%"><img src="img/legends/cyclone.png" alt=""></td>
+						<td style="width:80%"><strong>&nbsp;-&nbsp;Cyclone</strong></td>
+						</tr>
+
+						<tr>
+						<td style="width:5%"></td>
+						<td style="width:10%"><img src="img/legends/itcz.png" alt=""></td>
+						<td style="width:80%"><strong>&nbsp;-&nbsp;Intertropical Convergence Zone (ITCZ)</strong></td>
+						</tr>
+						
+					</table>
+				</div>
+				</div>
 			</div> 
 		</div> 
 	
@@ -212,60 +278,38 @@ img{width:32.2%;}
 		<script src="js/jquery.panzoom.min.js"></script>
 		<script src="js/moment.min.js"></script>
 
-		<script>
-			$(document).ready(function() {
+<script>
+$(document).ready(function() {
+	$('.satelliteimage').attr('src', 'http://m.weather.gov.ph/agaptest/surface_map.png'); });
+	$panzoom = $(".satelliteimage").panzoom();
 
-				//$('.satelliteimage').attr('src', 'https://pubfiles.pagasa.dost.gov.ph/tamss/weather/surface_map.jpg'); });
-$('.satelliteimage').attr('src', 'http://m.weather.gov.ph/agaptest/surface_map.png'); });
+$('.satelliteimage').load(function(){
 
- 				$panzoom = $(".satelliteimage").panzoom();
- 				  $('.satelliteimage').load(function(){
-        //Get container and image
-        var image = $('.satelliteimage');
-        var container = $('.image-container');
+var image = $('.satelliteimage');
+var container = $('.image-container');
+var container_height = container.height();
+var container_width = container.width();
+var image_height = image.height();
+var image_width = image.width();
+var image_center_left = image_width / 2.0;
+var image_center_top = image_height / 2.0;
+var zoom_factor;
 
-        //Get container dimensions
-        var container_height = container.height();
-        var container_width = container.width();
+zoom_factor = (image_height > image_width)?container_height / image_height:container_width / image_width;
+$panzoom.panzoom("zoom", zoom_factor, {animate: false});
 
-        //Get image dimensions
-        var image_height = image.height();
-        var image_width = image.width();
+image_width = image_width * zoom_factor;
+image_height = image_height * zoom_factor;
 
-        //Calculate the center of image since origin is at x:50% y:50%
-        var image_center_left = image_width / 2.0;
-        var image_center_top = image_height / 2.0;
+var image_offset_left = image_center_left - (image_width / 2.0);
+var image_offset_top = image_center_top - (image_height / 2.0);
+var new_offset_left = (container_width - image_width) / 2.0;
+var new_offset_top = (container_height - image_height) / 2.0;
+var pan_left = new_offset_left - image_offset_left;
+var pan_top = new_offset_top - image_offset_top;
+$panzoom.panzoom("pan", pan_left, pan_top);
 
-        //Calculate scaling factor
-        var zoom_factor;
-
-        //Check to determine whether to stretch along width or heigh
-        if(image_height > image_width)
-            zoom_factor = container_height / image_height;
-        else
-            zoom_factor = container_width / image_width;
-
-        //Zoom by zoom_factor
-        $panzoom.panzoom("zoom", zoom_factor, {animate: false});
-
-        //Calculate new image dimensions after zoom
-        image_width = image_width * zoom_factor;
-        image_height = image_height * zoom_factor;
-
-        //Calculate offset of the image after zoom
-        var image_offset_left = image_center_left - (image_width / 2.0);
-        var image_offset_top = image_center_top - (image_height / 2.0);
-
-        //Calculate desired offset for image
-        var new_offset_left = (container_width - image_width) / 2.0;
-        var new_offset_top = (container_height - image_height) / 2.0;
-
-        //Pan to set desired offset for image
-        var pan_left = new_offset_left - image_offset_left;
-        var pan_top = new_offset_top - image_offset_top;
-        $panzoom.panzoom("pan", pan_left, pan_top);
-
-    });
+});
 	
 </script>
 

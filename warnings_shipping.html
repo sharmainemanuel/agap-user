@@ -24,7 +24,7 @@
 	<body >
 
 		<div data-role="page" id="warnings_cyclone">
-			<div data-role="panel" id="leftpanel" data-display="overlay" data-position-fixed="true" >
+		<div data-role="panel" id="leftpanel" data-display="overlay" data-position-fixed="true" >
 				<div class='nd2-sidepanel-profile wow fadeInDown'>
 					<img class='profile-background' src="bg.jpg" />
 					<div class="row">
@@ -43,7 +43,6 @@
 					</div>
 				</div>
 				<ul data-role="listview" data-inset="false"></ul>
-				<div data-role="collapsibleset">
 				<div data-role="collapsible" data-inset="false"  data-collapsed-icon="carat-d" data-expanded-icon="carat-d" data-iconpos="right">
 					<h3>General Weather</h3>
 					<ul data-role="listview" data-inset="false" data-icon="false">
@@ -80,15 +79,15 @@
 				<div data-role="collapsible" data-inset="false" data-collapsed-icon="carat-d" data-expanded-icon="carat-d" data-iconpos="right">
 							<h3>Tropical Cyclone Warnings</h3>
 							<ul data-role="listview" data-icon="false">
-								<li><a href="weatherbulletin.html" data-ajax='false'>Local Weather Bulletin</a></li>
+									<li><a href="weatherbulletin.html" data-ajax='false'>Local Weather Bulletin</a></li>
 								<li><a href="track.html" data-ajax='false'>Tropical Cyclone Track</a></li>
 								<li><a href="hourlyupdate.html"  data-ajax='false'> Hourly Update</a></li>
-							<li><a href="warnings_shipping.html"  data-ajax='false'>Int'l Weather Bulletin</a></li>
+								<li><a href="warnings_shipping.html"  data-ajax='false'>Int'l Weather Bulletin</a></li>
 								</ul>
 				</div>
 				<ul data-role="listview" data-inset="false"></ul>
 				<div data-role="collapsible" data-inset="false" data-collapsed-icon="carat-d" data-expanded-icon="carat-d" data-iconpos="right">
-					<h3>Radar and Satellite</h3>
+					<h3>Weather Forecast Images</h3>
 					<ul data-role="listview" data-icon="false">
 						<li><a href="weathermap.html#weathermap" data-ajax='false'>Weather Map</a></li>
 						<li><a href="satellite.html#satellite" data-ajax='false'>Satellite</a></li>
@@ -104,6 +103,7 @@
 						<li><a href="podcast4.html#podcast" data-ajax='false'>Podcast</a></li>						
 					</ul>
 				</div>
+
 				<div class="user-menu">
 					<ul data-role="listview" data-inset="false"></ul>
 				<div data-role="collapsible" data-inset="false" data-collapsed-icon="carat-d" data-expanded-icon="carat-d" data-iconpos="right">
@@ -115,11 +115,10 @@
 					
 					</ul>
 				</div>
-				</div>	
-
+				</div>
+	
 			</div>
-			</div>
-					<div data-role="header" data-position="fixed" class="wow fadeIn">
+				<div data-role="header" data-position="fixed" class="wow fadeIn">
 					<a href="#leftpanel" class="ui-btn ui-btn-left wow fadeIn" data-wow-delay='0.8s'><i class="zmdi zmdi-menu"></i></a>
 					<h1 class="wow fadeIn" data-wow-delay='0.4s'>Int'l Weather Bulletin</h1>
 				 	<a   href="#sharePopupDialog" class="ui-btn ui-btn-right wow fadeIn" data-wow-delay='0.8s' data-rel="popup" data-position-to="window" data-transition="pop">
@@ -143,8 +142,13 @@
 		 
 			<div role="main" class="ui-content" data-inset="false">
 				<img id="imgLoader" src="img/ballRing.gif" class="loading">
-			<div class="inner" style="style='text-align:justify;">
-					</div>
+				<div id="nd2-card">
+				<div class="card-media selectoption">
+				<select name="weatheroptions" id="weatheroptions" onchange="viewnow(document.getElementById('weatheroptions').value - 1)" style="display: block">
+					<option selected hidden>[Select an Option]</option>
+				</select></div></div>
+
+				<div class="nd2-card"><div class="card-media" id="inner" style="text-align:justify; padding: 10px 10px 0 0 "></div></div>
 			</div> 
 		</div> 
 		
@@ -161,7 +165,6 @@
 		<script src="js/jquery.rss.js"></script>
 		<script src="js/moment.min.js"></script>
 		<script src="js/internet.js"></script>
-		<script src="js/errMsg.js"></script>
 		<script src="js/warnings_shipping.js"></script>
 	</body>
 </html>
